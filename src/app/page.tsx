@@ -4,7 +4,6 @@ import { Navbar } from "@/components/Navbar"
 import { Hero } from "@/components/Hero"
 import { LogoTicker } from "@/components/LogoTicker"
 import { Features } from "@/components/Features"
-import { ProductShowcase } from "@/components/ProductShowcase"
 import { DownloadSection } from "@/components/DownloadSection"
 import { Updates } from "@/components/Updates"
 import { FAQs } from "@/components/FAQs"
@@ -25,7 +24,6 @@ export default function Home() {
       <Hero />
       <LogoTicker />
       <Features />
-      <ProductShowcase />
       <DownloadSection />
       <Updates />
       <FAQs />

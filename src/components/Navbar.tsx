@@ -11,7 +11,6 @@ export const Navbar = () => {
 
   const navLinks = [
     { name: "Recursos", href: "#recursos" },
-    { name: "Como é o App", href: "#como-e-o-app" },
     { name: "Download", href: "#download" },
     { name: "Atualizações", href: "#atualizacoes" },
     { name: "Dúvidas", href: "#duvidas" },
@@ -19,12 +18,13 @@ export const Navbar = () => {
   ]
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-carbon-950/80 backdrop-blur-xl">
-      <div className="container">
-        <div className="flex items-center justify-between py-3.5">
+    <header className="sticky top-4 z-50 px-4">
+      <div className="mx-auto max-w-fit rounded-full border border-white/15 bg-carbon-900/80 px-4 py-2 backdrop-blur-2xl shadow-[0_10px_35px_rgba(0,0,0,0.8)]">
+        <div className="flex items-center gap-3 sm:gap-6">
+          
           {/* Logo & Marca */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative size-10 overflow-hidden rounded-xl bg-carbon-900 border border-purple-500/30 p-1 transition duration-300 group-hover:border-purple-400 group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="size-8 overflow-hidden rounded-full bg-carbon-950 border border-purple-500/40 p-1 flex items-center justify-center transition group-hover:border-purple-400">
               <Image
                 src={logoImage}
                 className="size-full object-contain"
@@ -32,65 +32,63 @@ export const Navbar = () => {
                 priority
               />
             </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
-                Vortex <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent">Cine</span>
-              </span>
-              <span className="text-[10px] uppercase tracking-widest text-white/50 -mt-1 font-semibold">
-                Oficial
-              </span>
-            </div>
+            <span className="text-sm font-bold text-white tracking-tight hidden xs:inline">
+              Vortex <span className="text-purple-400">Cine</span>
+            </span>
           </Link>
 
-          {/* Botão Menu Mobile */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Abrir menu"
-            className="inline-flex size-10 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-white sm:hidden hover:bg-white/10 transition"
+          {/* Badge Início Ativo (Estilo Pill da Referência) */}
+          <Link
+            href="/"
+            className="rounded-full bg-white px-4 py-1.5 text-xs font-bold text-black shadow-md transition hover:bg-white/90"
           >
-            {mobileMenuOpen ? <XIcon className="size-5" /> : <MenuIcon className="size-5" />}
-          </button>
+            Início
+          </Link>
 
-          {/* Menu Desktop */}
-          <nav className="hidden items-center gap-7 sm:flex">
+          {/* Links Desktop */}
+          <nav className="hidden md:flex items-center gap-5">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-white/70 transition hover:text-purple-300"
+                className="text-xs font-medium text-white/70 transition hover:text-white"
               >
                 {link.name}
               </a>
             ))}
-            <a
-              href="#download"
-              className="inline-flex items-center justify-center rounded-xl border border-purple-500/40 bg-purple-600/20 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md transition duration-300 hover:bg-purple-600 hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]"
-            >
-              Baixar APK
-            </a>
           </nav>
+
+          {/* Botão Baixar APK */}
+          <a
+            href="#download"
+            className="rounded-full bg-purple-600 px-4 py-1.5 text-xs font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.4)] transition hover:bg-purple-500 hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]"
+          >
+            Baixar APK
+          </a>
+
+          {/* Botão Mobile */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Menu"
+            className="inline-flex size-7 items-center justify-center text-white md:hidden"
+          >
+            {mobileMenuOpen ? <XIcon className="size-4" /> : <MenuIcon className="size-4" />}
+          </button>
         </div>
 
-        {/* Drawer Mobile */}
+        {/* Menu Mobile Expansível */}
         {mobileMenuOpen && (
-          <div className="border-t border-white/10 py-4 sm:hidden flex flex-col gap-3 animate-fadeIn">
+          <div className="mt-3 border-t border-white/10 pt-3 md:hidden flex flex-col gap-2 animate-fadeIn pb-1">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg px-3 py-2 text-base font-medium text-white/80 hover:bg-white/5 hover:text-purple-300 transition"
+                className="rounded-lg px-3 py-1.5 text-xs font-medium text-white/80 hover:bg-white/5 hover:text-purple-300 transition text-center"
               >
                 {link.name}
               </a>
             ))}
-            <a
-              href="#download"
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 text-center rounded-xl bg-purple-600 py-3 text-sm font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.4)]"
-            >
-              Baixar Versão Recente
-            </a>
           </div>
         )}
       </div>
