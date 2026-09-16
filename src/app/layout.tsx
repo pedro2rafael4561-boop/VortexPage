@@ -6,8 +6,8 @@ import "./globals.css"
 const dmSans = DM_Sans({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-	title: "SaaS Landing Page | Diego Tech",
-	description: "SaaS Landing Page with Dark Mode built by Diego Tech",
+	title: "VortexPage | Vortex Cine",
+	description: "VortexPage - O streaming inteligente para seus filmes, séries e canais.",
 }
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
+		<html lang="pt-BR">
 			<body className={clsx(dmSans.className, "antialiased")}>{children}</body>
 		</html>
 	)

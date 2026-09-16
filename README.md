@@ -1,11 +1,8 @@
-# About the App <img src="./src/assets/images/logosaas.png" width="40px" height="40px" align="center" alt="SaaS Landing Page Logo | Diego Tech">
+# VortexPage
 
-This is a [Dark Mode SaaS Landing Page](https://dark-saas-landing-page.pages.dev/) built by Diego Tech by using:
+Landing page oficial do **Vortex Cine**, desenvolvida para exibição de recursos, downloads do app e experiência completa do usuário.
 
-- Next.js
-- TypeScript
-
-<br />
+Pronta para deploy na **Vercel** usando Next.js, TypeScript, TailwindCSS e Framer Motion.
 
 <img src="./public/readme1.png" width="600px" height="293px" alt="SaaS Landing Page with Dark Mode | Diego Tech | README Image 1" />
 <img src="./public/readme2.png" width="600px" height="293px" alt="SaaS Landing Page with Dark Mode | Diego Tech | README Image 2" />

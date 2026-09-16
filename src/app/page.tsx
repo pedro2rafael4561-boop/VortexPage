@@ -10,12 +10,10 @@ import { CallToAction } from "@/components/CallToAction"
 import { Footer } from "@/components/Footer"
 import { useTitleChanger } from "@/hooks/useTitleChanger"
 
-export const runtime = "edge"
-
 export default function Home() {
   useTitleChanger({
-    defaultTitle: "SaaS Landing Page | Diego Tech",
-    blurTitle: "I miss you! 😭 | Diego Tech",
+    defaultTitle: "Vortex Cine | O melhor do entretenimento",
+    blurTitle: "Sentimos sua falta! 🍿 | Vortex Cine",
   })
 
   return (
