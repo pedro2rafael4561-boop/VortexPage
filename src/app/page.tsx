@@ -15,7 +15,7 @@ import { useTitleChanger } from "@/hooks/useTitleChanger"
 export default function Home() {
   useTitleChanger({
     defaultTitle: "Vortex Cine | O Cinema Definitivo no Seu Dispositivo",
-    blurTitle: "Sentimos sua falta! 🍿 | Vortex Cine",
+    blurTitle: "Sentimos sua falta! | Vortex Cine",
   })
 
   return (

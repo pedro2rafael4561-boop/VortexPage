@@ -1,16 +1,28 @@
 "use client"
 import { motion } from "framer-motion"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faFilm,
+  faTv,
+  faBolt,
+  faUsers,
+  faMasksTheater,
+  faClockRotateLeft,
+  faRocket,
+  faMagnifyingGlass,
+  faTowerBroadcast,
+} from "@fortawesome/free-solid-svg-icons"
 
 const tickerItems = [
-  { label: "Filmes em Lançamento", icon: "🎬" },
-  { label: "Séries Completas & Temporadas", icon: "🍿" },
-  { label: "Animes em Alta Definição", icon: "⚡" },
-  { label: "Canais de TV Ao Vivo", icon: "📺" },
-  { label: "Múltiplos Perfis para Toda a Família", icon: "👥" },
-  { label: "41 Avatares Customizados", icon: "🎭" },
-  { label: "Continuar Assistindo Sincronizado", icon: "🎯" },
-  { label: "Player Cinematográfico Fluido", icon: "🚀" },
-  { label: "Busca Inteligente e Rápida", icon: "🔍" },
+  { label: "Filmes em Lançamento", icon: faFilm },
+  { label: "Séries Completas & Temporadas", icon: faTv },
+  { label: "Animes em Alta Definição", icon: faBolt },
+  { label: "Canais de TV Ao Vivo", icon: faTowerBroadcast },
+  { label: "Múltiplos Perfis para Toda a Família", icon: faUsers },
+  { label: "41 Avatares Customizados", icon: faMasksTheater },
+  { label: "Continuar Assistindo Sincronizado", icon: faClockRotateLeft },
+  { label: "Player Cinematográfico Fluido", icon: faRocket },
+  { label: "Busca Inteligente e Rápida", icon: faMagnifyingGlass },
 ]
 
 export const LogoTicker = () => {
@@ -38,7 +50,7 @@ export const LogoTicker = () => {
               key={`${item.label}-${idx}`}
               className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 shadow-sm backdrop-blur-sm whitespace-nowrap hover:border-purple-500/40 hover:bg-purple-600/10 transition"
             >
-              <span className="text-base">{item.icon}</span>
+              <FontAwesomeIcon icon={item.icon} className="text-purple-400 text-sm" />
               <span>{item.label}</span>
             </div>
           ))}

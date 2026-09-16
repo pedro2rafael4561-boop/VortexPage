@@ -1,4 +1,10 @@
 "use client"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faDownload,
+  faSliders,
+  faCirclePlay,
+} from "@fortawesome/free-solid-svg-icons"
 
 export const DownloadSection = () => {
   const downloadUrl = "https://github.com/pedro2rafael4561-boop/VortexPage/releases/latest/download/Vortex-Cine.apk"
@@ -8,19 +14,19 @@ export const DownloadSection = () => {
       step: "01",
       title: "Baixar o Arquivo APK",
       description: "Toque no botão de download acima para baixar a versão oficial mais recente diretamente no seu dispositivo Android.",
-      icon: "📥",
+      icon: faDownload,
     },
     {
       step: "02",
       title: "Autorizar Instalação",
       description: "Caso o Android alerte sobre arquivo desconhecido, selecione 'Continuar' e permita a instalação nas configurações do navegador.",
-      icon: "⚙️",
+      icon: faSliders,
     },
     {
       step: "03",
       title: "Ativar e Aproveitar",
       description: "Conclua a instalação gratuita, abra o app, insira as credenciais da sua assinatura e desfrute do melhor catálogo.",
-      icon: "🍿",
+      icon: faCirclePlay,
     },
   ]
 
@@ -67,9 +73,7 @@ export const DownloadSection = () => {
               href={downloadUrl}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-2xl border border-purple-400/50 bg-gradient-to-r from-purple-600 via-purple-700 to-indigo-700 px-10 py-5 text-lg font-extrabold text-white shadow-[0_0_35px_rgba(147,51,234,0.5)] backdrop-blur-md transition duration-300 hover:scale-105 hover:shadow-[0_0_60px_rgba(168,85,247,0.8)]"
             >
-              <svg className="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
+              <FontAwesomeIcon icon={faDownload} className="size-5" />
               <span>Baixar Vortex-Cine.apk (v1.1.1)</span>
             </a>
           </div>
@@ -100,8 +104,8 @@ export const DownloadSection = () => {
                 className="relative rounded-2xl border border-white/10 bg-carbon-900/70 p-6 backdrop-blur-md transition hover:border-purple-500/40"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="inline-flex size-12 items-center justify-center rounded-xl bg-purple-600/20 border border-purple-500/30 text-xl">
-                    {step.icon}
+                  <div className="inline-flex size-12 items-center justify-center rounded-xl bg-purple-600/20 border border-purple-500/30 text-purple-300 text-lg">
+                    <FontAwesomeIcon icon={step.icon} />
                   </div>
                   <span className="text-2xl font-black text-purple-400/40">
                     {step.step}

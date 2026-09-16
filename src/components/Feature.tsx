@@ -1,11 +1,13 @@
 "use client"
 import { useEffect, useRef } from "react"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons"
 
 interface FeatureProps {
   title: string
   description: string
-  icon: string
+  icon: IconDefinition
   tag?: string
 }
 
@@ -41,9 +43,9 @@ const Feature: React.FC<FeatureProps> = ({ title, description, icon, tag }) => {
         }}
       />
 
-      <div className="flex items-center justify-between mb-4">
-        <div className="inline-flex size-14 items-center justify-center rounded-xl bg-purple-600/20 border border-purple-500/30 text-2xl shadow-inner group-hover:scale-110 transition duration-300">
-          <span>{icon}</span>
+      <div className="flex items-center justify-between mb-5">
+        <div className="inline-flex size-12 items-center justify-center rounded-xl bg-purple-600/20 border border-purple-500/30 text-purple-300 text-xl shadow-inner group-hover:scale-110 group-hover:bg-purple-600/30 group-hover:text-purple-200 transition duration-300">
+          <FontAwesomeIcon icon={icon} className="size-5" />
         </div>
         {tag && (
           <span className="rounded-full bg-purple-500/10 border border-purple-500/30 px-2.5 py-0.5 text-[11px] font-semibold text-purple-300 uppercase tracking-wider">
