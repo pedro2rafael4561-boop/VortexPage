@@ -36,15 +36,14 @@ export const Hero = () => {
             </a>
           </motion.div>
 
-          {/* Logo Central com Efeito Neon */}
+          {/* Logo Central */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="relative mt-8"
           >
-            <div className="absolute inset-0 rounded-3xl bg-purple-600/30 blur-2xl transform -rotate-6 scale-110" />
-            <div className="relative size-24 sm:size-32 rounded-3xl border border-purple-500/40 bg-carbon-900/90 p-3 shadow-2xl backdrop-blur-xl">
+            <div className="relative size-24 sm:size-32 rounded-3xl border border-white/10 bg-carbon-900 p-3 shadow-xl backdrop-blur-xl">
               <Image
                 src={logoImage}
                 alt="Vortex Cine App"
