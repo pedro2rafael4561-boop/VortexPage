@@ -1,13 +1,17 @@
 export const Banner = () => {
   return (
-    <div className="bg-[linear-gradient(to_right,rgb(252,214,255,.7),rgb(41,216,255,.7),rgb(255,253,128,.7),rgb(248,154,191,.7),rgb(252,214,255,.7))] py-3 text-center">
+    <div className="relative border-b border-purple-500/20 bg-gradient-to-r from-carbon-950 via-purple-950/40 to-carbon-950 py-2.5 text-center text-xs sm:text-sm font-medium text-white/90">
       <div className="container">
-        <p className="font-medium">
-          <span className="hidden sm:inline">
-            Introducing a completely redesigned interface -{" "}
+        <p className="flex items-center justify-center gap-2">
+          <span className="inline-flex items-center rounded-full bg-purple-500/20 px-2 py-0.5 text-xs font-semibold text-purple-300 border border-purple-500/30">
+            v1.1.1 Disponível
           </span>
-          <a href="#" className="underline underline-offset-4">
-            Explore the demo
+          <span>Nova versão oficial com máxima fluidez e 41 avatares nativos.</span>
+          <a
+            href="#download"
+            className="hidden sm:inline font-semibold text-purple-300 underline underline-offset-4 hover:text-purple-200 transition"
+          >
+            Baixar agora &rarr;
           </a>
         </p>
       </div>

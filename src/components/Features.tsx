@@ -1,40 +1,104 @@
+"use client"
 import Feature from "./Feature"
 
 const features = [
   {
-    title: "Integration Ecosystem",
+    title: "Filmes em Alta Resolução",
     description:
-      "Enhance your productivity by connecting with your tools, keeping your essentials in one place.",
+      "Navegue por lançamentos e clássicos organizados por gêneros, com capas em alta definição, sinopses detalhadas e trailers integrados.",
+    icon: "🎬",
+    tag: "Cinema",
   },
   {
-    title: "Goal Setting and Tracking",
+    title: "Séries & Temporadas",
     description:
-      "Define and track your goals, breaking down objectives into achievable tasks to keep your targets in sight.",
+      "Acompanhe suas séries favoritas com organização inteligente por temporadas e episódios, lembrando onde você parou.",
+    icon: "🍿",
+    tag: "Completo",
   },
   {
-    title: "Secure Data Encryption",
+    title: "Animes & Animações",
     description:
-      "With end-to-end encryption, your data is securely stored and protected from unauthorized access.",
+      "Área dedicada com seleção dos melhores animes do momento, com áudios dublados e legendados em alta qualidade.",
+    icon: "⚡",
+    tag: "Otaku",
+  },
+  {
+    title: "Canais de TV Ao Vivo",
+    description:
+      "Acesse a programação de canais ao vivo de forma rápida e estável, com player nativo otimizado para transmissões sem travamento.",
+    icon: "📺",
+    tag: "Ao Vivo",
+  },
+  {
+    title: "Múltiplos Perfis com Avatares",
+    description:
+      "Crie perfis independentes para cada membro da família e personalize com 41 avatares exclusivos no estilo do app.",
+    icon: "👥",
+    tag: "Multi-User",
+  },
+  {
+    title: "Interface Cinematográfica",
+    description:
+      "Design moderno em tema carbon escuro com detalhes em roxo e efeitos glassmorphism, inspirado nas melhores plataformas do mundo.",
+    icon: "💎",
+    tag: "Design",
+  },
+  {
+    title: "Continuar Assistindo Sincronizado",
+    description:
+      "Nunca perca o ponto em que parou. Seu histórico e progresso são sincronizados e salvos com segurança de forma persistente.",
+    icon: "🎯",
+    tag: "Sync",
+  },
+  {
+    title: "Busca Rápida e Inteligente",
+    description:
+      "Encontre instantaneamente qualquer filme, série, anime ou canal digitando o nome no campo de busca universal.",
+    icon: "🔍",
+    tag: "Instantâneo",
+  },
+  {
+    title: "Atualizações Direto no App",
+    description:
+      "Receba avisos de novas versões e baixe as melhorias e novos recursos diretamente no aplicativo com um único toque.",
+    icon: "🚀",
+    tag: "Sempre Atual",
   },
 ]
 
 export const Features = () => {
   return (
-    <section className="bg-black py-[72px] text-white sm:py-24">
-      <div className="container">
-        <h2 className="text-center text-5xl font-bold tracking-tighter sm:text-6xl">
-          Everything you need
-        </h2>
-        <div className="mx-auto max-w-xl">
-          <p className="mt-5 text-center text-xl text-white/70">
-            Enjoy customizable lists, team work tools, and smart tracking all in
-            one place. Set tasks, get reminders, and see your progress simply
-            and quickly
+    <section id="recursos" className="relative bg-carbon-950 py-20 text-white sm:py-28">
+      {/* Luz ambiente roxa */}
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[900px] rounded-full bg-purple-900/10 blur-[150px]" />
+
+      <div className="container relative z-10">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 uppercase tracking-widest">
+            Recursos Oficiais
+          </span>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
+            Tudo o que você precisa para uma{" "}
+            <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-indigo-300 bg-clip-text text-transparent">
+              imersão total
+            </span>
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-white/70">
+            O Vortex Cine foi desenvolvido do zero para oferecer velocidade,
+            beleza visual e facilidade de uso em qualquer tela.
           </p>
         </div>
-        <div className="mt-16 flex flex-col gap-4 sm:flex-row">
-          {features.map(({ title, description }) => (
-            <Feature key={title} title={title} description={description} />
+
+        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature) => (
+            <Feature
+              key={feature.title}
+              title={feature.title}
+              description={feature.description}
+              icon={feature.icon}
+              tag={feature.tag}
+            />
           ))}
         </div>
       </div>
