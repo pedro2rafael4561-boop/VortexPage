@@ -13,10 +13,26 @@ interface ReleaseNote {
 
 const releases: ReleaseNote[] = [
   {
+    version: "v1.1.2",
+    title: "Interface do Player Otimizada & Melhorias Gerais",
+    date: "16 de Setembro de 2026",
+    isLatest: true,
+    highlights: [
+      "Player mais limpo com foco total no conteúdo e controles essenciais",
+      "Remoção de botões desnecessários na barra superior durante a reprodução",
+      "Sincronização persistente de perfis e preferências",
+    ],
+    details: [
+      "Layout do player simplificado para uma visualização mais imersiva e sem poluição visual",
+      "Ajustes no fluxo de navegação e carregamento de listas",
+      "Performance aprimorada no player nativo de vídeo",
+    ],
+  },
+  {
     version: "v1.1.1",
     title: "Atualizações de Sistema & Persistência Completa de Perfis",
     date: "16 de Setembro de 2026",
-    isLatest: true,
+    isLatest: false,
     highlights: [
       "Sistema de sincronização de perfis e preferências persistente em armazenamento local",
       "Novo sistema otimizado de verificação e download de atualizações",

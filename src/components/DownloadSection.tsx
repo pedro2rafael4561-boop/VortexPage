@@ -54,7 +54,7 @@ export const DownloadSection = () => {
           {/* Detalhes da Versão */}
           <div className="mt-8 flex flex-wrap justify-center items-center gap-4 text-xs sm:text-sm text-white/70">
             <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-2">
-              <span className="text-white/40">Versão:</span> <strong className="text-white">v1.1.1</strong>
+              <span className="text-white/40">Versão:</span> <strong className="text-white">v1.1.2</strong>
             </div>
             <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-2">
               <span className="text-white/40">Lançamento:</span> <strong className="text-white">Setembro de 2026</strong>
