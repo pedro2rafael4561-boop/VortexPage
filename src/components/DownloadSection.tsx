@@ -16,10 +16,10 @@ export const DownloadSection = () => {
   const downloadUrl = "https://github.com/pedro2rafael4561-boop/VortexPage/releases/latest/download/Vortex-Cine.apk"
 
   const tabs = [
-    { id: "phone", label: "Celular", icon: faMobileScreenButton },
-    { id: "tv", label: "TV & TV Box", icon: faTv },
-    { id: "desktop", label: "Computador", icon: faLaptop },
-    { id: "smarttv", label: "Smart TV", icon: faDisplay },
+    { id: "phone", label: "Celular", icon: faMobileScreenButton, dev: false },
+    { id: "tv", label: "TV & TV Box", icon: faTv, dev: true },
+    { id: "desktop", label: "Computador", icon: faLaptop, dev: true },
+    { id: "smarttv", label: "Smart TV", icon: faDisplay, dev: true },
   ] as const
 
   const installSteps = [
@@ -62,7 +62,7 @@ export const DownloadSection = () => {
 
         {/* Seletor de Abas (Segmented Control Pill da Referência) */}
         <div className="mt-10 flex items-center">
-          <div className="inline-flex rounded-2xl border border-white/10 bg-carbon-900/90 p-1.5 backdrop-blur-xl shadow-lg">
+          <div className="inline-flex rounded-2xl border border-white/10 bg-carbon-900/90 p-1.5 backdrop-blur-xl shadow-lg flex-wrap gap-1">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id
               return (
@@ -77,6 +77,13 @@ export const DownloadSection = () => {
                 >
                   <FontAwesomeIcon icon={tab.icon} className="size-3.5" />
                   <span>{tab.label}</span>
+                  {tab.dev && (
+                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md ${
+                      isActive ? "bg-purple-600 text-white" : "bg-white/10 text-purple-300"
+                    }`}>
+                      Em breve
+                    </span>
+                  )}
                 </button>
               )
             })}
@@ -91,11 +98,18 @@ export const DownloadSection = () => {
             <div className="max-w-xl space-y-6">
               {activeTab === "phone" && (
                 <>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 w-fit">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    Disponível agora
+                  </div>
                   <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-                    Vortex Cine para Android e iPhone
+                    Vortex Cine para Celular
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                    Navegue, busque e assista no Android e no iPhone. Entre com sua conta para sincronizar sua biblioteca, múltiplos perfis e o progresso dos vídeos entre todos os aparelhos.
+                    Navegue, busque e assista diretamente no seu celular ou tablet. Faça login com suas credenciais para sincronizar sua biblioteca, múltiplos perfis e o progresso dos seus vídeos.
                   </p>
                   <div className="flex flex-wrap items-center gap-3.5 pt-2">
                     <a
@@ -103,13 +117,13 @@ export const DownloadSection = () => {
                       className="rounded-full bg-white px-6 py-3 text-xs sm:text-sm font-bold text-black shadow-md transition hover:bg-white/90 hover:scale-105 flex items-center gap-2"
                     >
                       <FontAwesomeIcon icon={faDownload} className="size-3.5" />
-                      <span>Android APK</span>
+                      <span>Baixar Android APK</span>
                     </a>
                     <button
                       disabled
                       className="rounded-full border border-white/10 bg-white/5 px-5 py-3 text-xs sm:text-sm font-medium text-white/40 cursor-not-allowed"
                     >
-                      TestFlight indisponível no momento
+                      iOS / TestFlight (Em breve)
                     </button>
                   </div>
                 </>
@@ -117,71 +131,78 @@ export const DownloadSection = () => {
 
               {activeTab === "tv" && (
                 <>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 w-fit">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                    </span>
+                    Em Desenvolvimento
+                  </div>
                   <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                     Vortex Cine para Android TV e TV Box
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                    Interface cinematográfica 100% pensada para controle remoto (D-Pad). Reprodução contínua em 4K, carregamento instantâneo e grade completa de filmes, séries e canais ao vivo.
+                    Estamos criando uma versão cinematográfica dedicada para controle remoto (D-Pad), com foco em alta performance, navegação ágil e reprodução contínua em 4K.
                   </p>
                   <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                    <a
-                      href={downloadUrl}
-                      className="rounded-full bg-white px-6 py-3 text-xs sm:text-sm font-bold text-black shadow-md transition hover:bg-white/90 hover:scale-105 flex items-center gap-2"
+                    <button
+                      disabled
+                      className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2"
                     >
-                      <FontAwesomeIcon icon={faDownload} className="size-3.5" />
-                      <span>Android TV APK</span>
-                    </a>
-                    <a
-                      href="#como-instalar"
-                      className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-xs sm:text-sm font-medium text-white/80 hover:bg-white/10 transition"
-                    >
-                      Instruções de instalação TV
-                    </a>
+                      <span>Versão TV em desenvolvimento</span>
+                    </button>
                   </div>
                 </>
               )}
 
               {activeTab === "desktop" && (
                 <>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 w-fit">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                    </span>
+                    Em Desenvolvimento
+                  </div>
                   <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                     Vortex Cine para Computador
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                    Desfrute da experiência completa em monitores ultrawide, notebooks e desktops. Conectividade direta com suas credenciais e aceleração por hardware para fluidez máxima.
+                    A experiência desktop para Windows e macOS está sendo desenvolvida para oferecer renderização nativa de alta fidelidade e suporte avançado a monitores ultrawide.
                   </p>
                   <div className="flex flex-wrap items-center gap-3.5 pt-2">
                     <button
                       disabled
-                      className="rounded-full border border-purple-500/30 bg-purple-500/10 px-6 py-3 text-xs sm:text-sm font-bold text-purple-300"
+                      className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2"
                     >
-                      Versão Desktop em Desenvolvimento
+                      <span>Versão Computador em desenvolvimento</span>
                     </button>
-                    <a
-                      href={downloadUrl}
-                      className="rounded-full border border-white/10 bg-white/5 px-5 py-3 text-xs sm:text-sm font-medium text-white/70 hover:bg-white/10 transition"
-                    >
-                      Baixar APK (Emuladores)
-                    </a>
                   </div>
                 </>
               )}
 
               {activeTab === "smarttv" && (
                 <>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 w-fit">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                    </span>
+                    Em Desenvolvimento
+                  </div>
                   <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                     Vortex Cine para Smart TVs
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                    Compatível com sistemas Google TV, Fire TV Stick e Android TV de diversas marcas como Sony, TCL, Philips, Xiaomi e receptores modernos.
+                    O suporte para plataformas de Smart TVs (como Samsung Tizen e LG webOS) está planejado para fases futuras de expansão do ecossistema Vortex Cine.
                   </p>
                   <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                    <a
-                      href={downloadUrl}
-                      className="rounded-full bg-white px-6 py-3 text-xs sm:text-sm font-bold text-black shadow-md transition hover:bg-white/90 hover:scale-105 flex items-center gap-2"
+                    <button
+                      disabled
+                      className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2"
                     >
-                      <FontAwesomeIcon icon={faDownload} className="size-3.5" />
-                      <span>Baixar para Smart TV (APK)</span>
-                    </a>
+                      <span>Versão Smart TV em desenvolvimento</span>
+                    </button>
                   </div>
                 </>
               )}

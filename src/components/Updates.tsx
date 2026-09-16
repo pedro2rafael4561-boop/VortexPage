@@ -13,10 +13,29 @@ interface ReleaseNote {
 
 const releases: ReleaseNote[] = [
   {
+    version: "v1.1.3",
+    title: "Otimização Avançada de Performance & Sistema de Notificações",
+    date: "16 de Setembro de 2026",
+    isLatest: true,
+    highlights: [
+      "Otimização profunda de fluidez: rolagem contínua e troca instantânea de seções",
+      "Animação da barra de navegação reconstruída sem engasgos ou relayouts",
+      "Sistema completo de notificações de lançamentos funcional com envio de teste",
+      "Gerenciamento inteligente de memória com cache agressivo de imagens",
+    ],
+    details: [
+      "Otimização no motor de animações da barra de abas eliminando recálculos pesados durante a rolagem",
+      "Congelamento de processos e animações em abas inativas para economizar CPU e bateria",
+      "Sistema de notificações com suporte a disparos de teste e solicitação de permissões nativas",
+      "Refinamento das configurações com remoção de integrações legadas e limpeza visual em Atualizações",
+      "Aumento do cache de memória para carregamento imediato de capas de filmes e séries",
+    ],
+  },
+  {
     version: "v1.1.2",
     title: "Interface do Player Otimizada & Melhorias Gerais",
     date: "16 de Setembro de 2026",
-    isLatest: true,
+    isLatest: false,
     highlights: [
       "Player mais limpo com foco total no conteúdo e controles essenciais",
       "Remoção de botões desnecessários na barra superior durante a reprodução",

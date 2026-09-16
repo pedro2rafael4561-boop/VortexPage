@@ -4,9 +4,9 @@ export const Banner = () => {
       <div className="container">
         <p className="flex items-center justify-center gap-2">
           <span className="inline-flex items-center rounded-full bg-purple-500/20 px-2 py-0.5 text-xs font-semibold text-purple-300 border border-purple-500/30">
-            v1.1.2 Disponível
+            v1.1.3 Disponível
           </span>
-          <span>Nova versão oficial com máxima fluidez e 41 avatares nativos.</span>
+          <span>Nova versão oficial com alta performance e máxima fluidez.</span>
           <a
             href="#download"
             className="hidden sm:inline font-semibold text-purple-300 underline underline-offset-4 hover:text-purple-200 transition"
