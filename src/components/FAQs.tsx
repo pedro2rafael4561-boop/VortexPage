@@ -11,9 +11,14 @@ const faqItems = [
       "O Vortex Cine é um aplicativo moderno e completo para reprodução e organização de mídias, incluindo filmes, séries, animes e canais de TV ao vivo. Desenvolvido com interface cinematográfica estilo carbon e roxo, oferece uma experiência rápida, limpa e imersiva.",
   },
   {
-    question: "O aplicativo é gratuito?",
+    question: "O aplicativo é gratuito ou pago?",
     answer:
-      "Sim! O download do aplicativo oficial do Vortex Cine é 100% gratuito. Você pode baixar o arquivo APK oficial diretamente em nosso site e instalá-lo em seus aparelhos Android.",
+      "O download e a instalação do Vortex Cine são 100% gratuitos para qualquer aparelho compatível. Para liberar o catálogo completo de filmes, séries, animes e canais de TV ao vivo, o uso do aplicativo é realizado mediante uma assinatura ou plano de acesso ativo.",
+  },
+  {
+    question: "Como funciona a ativação do meu acesso?",
+    answer:
+      "Após baixar e instalar o aplicativo gratuitamente no seu celular, tablet ou TV Box, basta inserir suas credenciais de usuário na tela de login para conectar ao seu plano e desbloquear todos os conteúdos instantaneamente.",
   },
   {
     question: "Em quais dispositivos posso instalar o Vortex Cine?",

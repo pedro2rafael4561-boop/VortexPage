@@ -125,7 +125,7 @@ export const Hero = () => {
               <span className="text-purple-400">✓</span> 41 Avatares Exclusivos
             </div>
             <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              <span className="text-purple-400">✓</span> 100% Gratuito
+              <span className="text-purple-400">✓</span> Instalação Gratuita
             </div>
           </motion.div>
 

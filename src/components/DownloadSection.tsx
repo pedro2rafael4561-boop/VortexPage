@@ -18,8 +18,8 @@ export const DownloadSection = () => {
     },
     {
       step: "03",
-      title: "Abrir e Curtir",
-      description: "Conclua a instalação, crie o seu perfil com um dos 41 avatares disponíveis e desfrute do melhor entretenimento.",
+      title: "Ativar e Aproveitar",
+      description: "Conclua a instalação gratuita, abra o app, insira as credenciais da sua assinatura e desfrute do melhor catálogo.",
       icon: "🍿",
     },
   ]
@@ -74,8 +74,8 @@ export const DownloadSection = () => {
             </a>
           </div>
 
-          <p className="mt-4 text-xs text-white/40">
-            Download 100% seguro, verificado e livre de vírus.
+          <p className="mt-4 text-xs text-white/50">
+            Download e instalação 100% gratuitos • Uso e liberação do catálogo mediante assinatura ativa.
           </p>
         </div>
 
