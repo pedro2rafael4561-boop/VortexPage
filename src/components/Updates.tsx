@@ -13,10 +13,61 @@ interface ReleaseNote {
 
 const releases: ReleaseNote[] = [
   {
+    version: "v1.1.6",
+    title: "Correção de Autenticação Xtream & Conexão Blindada",
+    date: "17 de Setembro de 2026",
+    isLatest: true,
+    highlights: [
+      "Correção definitiva no login: compatibilidade total com respostas de servidores Xtream / XUI.one",
+      "Detecção inteligente de endpoints de API evitando rejeição por páginas HTML",
+      "Blindagem da conexão com validação antecipada de credenciais e status de conta",
+      "Estabilidade máxima na navegação sem travamentos ao conectar listas pesadas",
+    ],
+    details: [
+      "Ajuste no motor de autenticação para descartar payloads HTML espúrios e priorizar a API JSON Xtream",
+      "Redução no tempo de resposta e novos fallbacks de conexão nas validações de conta",
+      "Garantia de persistência da sessão e token ativo sem desconexões involuntárias ao reiniciar",
+    ],
+  },
+  {
+    version: "v1.1.5",
+    title: "Modo Offline Seguro com Criptografia & Acesso Sem Internet",
+    date: "17 de Setembro de 2026",
+    isLatest: false,
+    highlights: [
+      "Modo Offline protegido com criptografia nativa AES-CTR para mídias baixadas",
+      "Entrada direta no app sem internet: assista seus downloads a qualquer momento",
+      "Barra dinâmica de armazenamento informando espaço livre e espaço ocupado pelo app",
+      "Download Manager integrado com controle de progresso e cancelamento",
+    ],
+    details: [
+      "Criptografia forte durante a gravação direta em disco garantindo segurança total dos arquivos locais",
+      "Roteamento inteligente de inicialização: direciona diretamente aos downloads se não houver rede",
+      "Monitoramento contínuo de capacidade de disco e gerenciamento otimizado de armazenamento",
+    ],
+  },
+  {
+    version: "v1.1.4",
+    title: "DNS Fallback Ultrarrápido, Vortex Sync em Nuvem & Nova Identidade",
+    date: "17 de Setembro de 2026",
+    isLatest: false,
+    highlights: [
+      "DNS Fallback automático (Cloudflare + Google DoH) contra bloqueios e instabilidades de provedores",
+      "Vortex Sync: sincronização instantânea de múltiplos perfis e preferências em nuvem",
+      "Identidade visual unificada com novas telas de boas-vindas e logo cinematográfica",
+      "Correção e melhorias no verificador interno de atualizações do app",
+    ],
+    details: [
+      "Mecanismo DNS-over-HTTPS (DoH) acionado automaticamente em falhas de resolução de rota",
+      "Sincronização em nuvem resiliente com Supabase para dados de perfil e preferências",
+      "Refinamentos na responsividade dos elementos do player e navegação fluida",
+    ],
+  },
+  {
     version: "v1.1.3",
     title: "Otimização Avançada de Performance & Sistema de Notificações",
     date: "16 de Setembro de 2026",
-    isLatest: true,
+    isLatest: false,
     highlights: [
       "Otimização profunda de fluidez: rolagem contínua e troca instantânea de seções",
       "Animação da barra de navegação reconstruída sem engasgos ou relayouts",

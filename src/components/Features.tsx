@@ -10,6 +10,8 @@ import {
   faRotateRight,
   faMagnifyingGlass,
   faCloudArrowDown,
+  faFileArrowDown,
+  faShieldHalved,
 } from "@fortawesome/free-solid-svg-icons"
 
 const features = [
@@ -40,6 +42,20 @@ const features = [
       "Acesse a programação de canais ao vivo de forma rápida e estável, com player nativo otimizado para transmissões sem travamento.",
     icon: faTowerBroadcast,
     tag: "Ao Vivo",
+  },
+  {
+    title: "Modo Offline Criptografado",
+    description:
+      "Baixe filmes e séries com proteção AES-CTR nativa e assista diretamente no app mesmo sem nenhuma conexão à internet.",
+    icon: faFileArrowDown,
+    tag: "Offline",
+  },
+  {
+    title: "Conexão Blindada & DNS Fallback",
+    description:
+      "Resolução inteligente de rotas com Cloudflare e Google DoH para contornar bloqueios e instabilidades de operadoras.",
+    icon: faShieldHalved,
+    tag: "Blindado",
   },
   {
     title: "Múltiplos Perfis com Avatares",
