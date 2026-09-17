@@ -1,17 +1,17 @@
 export const Banner = () => {
   return (
-    <div className="relative border-b border-purple-500/20 bg-gradient-to-r from-carbon-950 via-purple-950/40 to-carbon-950 py-2.5 text-center text-xs sm:text-sm font-medium text-white/90">
-      <div className="container">
-        <p className="flex items-center justify-center gap-2">
-          <span className="inline-flex items-center rounded-full bg-purple-500/20 px-2 py-0.5 text-xs font-semibold text-purple-300 border border-purple-500/30">
+    <div className="relative border-b border-purple-500/20 bg-gradient-to-r from-carbon-950 via-purple-950/40 to-carbon-950 py-2 sm:py-2.5 text-center text-xs sm:text-sm font-medium text-white/90">
+      <div className="container px-3">
+        <p className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 leading-snug">
+          <span className="inline-flex items-center rounded-full bg-purple-500/20 px-2 py-0.5 text-[11px] sm:text-xs font-semibold text-purple-300 border border-purple-500/30">
             v1.1.6 Disponível
           </span>
-          <span>Nova versão oficial com conexão blindada e modo offline protegido.</span>
+          <span className="text-white/80">Nova versão oficial com conexão blindada e modo offline.</span>
           <a
             href="#download"
-            className="hidden sm:inline font-semibold text-purple-300 underline underline-offset-4 hover:text-purple-200 transition"
+            className="font-semibold text-purple-300 underline underline-offset-4 hover:text-purple-200 transition"
           >
-            Baixar agora &rarr;
+            Baixar &rarr;
           </a>
         </p>
       </div>

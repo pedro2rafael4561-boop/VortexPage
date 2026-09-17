@@ -52,33 +52,33 @@ export const DownloadSection = () => {
         
         {/* Cabeçalho da Seção (Inspirado na referência: Pick your screen) */}
         <div className="text-left max-w-3xl">
-          <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
             Escolha sua tela.
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-white/70 leading-relaxed">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-white/70 leading-relaxed">
             Cada versão é construída sob medida para a tela em que roda, e não um layout esticado para caber em todas. Escolha a sua e o download está logo ali.
           </p>
         </div>
 
         {/* Seletor de Abas (Segmented Control Pill da Referência) */}
-        <div className="mt-10 flex items-center">
-          <div className="inline-flex rounded-2xl border border-white/10 bg-carbon-900/90 p-1.5 backdrop-blur-xl shadow-lg flex-wrap gap-1">
+        <div className="mt-8 sm:mt-10 w-full sm:w-auto">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-1.5 rounded-2xl border border-white/10 bg-carbon-900/90 p-1.5 backdrop-blur-xl shadow-lg w-full sm:w-auto">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-semibold transition duration-200 ${
+                  className={`flex items-center justify-center gap-2 rounded-xl px-3 py-2.5 sm:px-4 text-xs sm:text-sm font-semibold transition duration-200 w-full sm:w-auto ${
                     isActive
                       ? "bg-white text-black shadow-md"
                       : "text-white/60 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  <FontAwesomeIcon icon={tab.icon} className="size-3.5" />
-                  <span>{tab.label}</span>
+                  <FontAwesomeIcon icon={tab.icon} className="size-3.5 flex-shrink-0" />
+                  <span className="truncate">{tab.label}</span>
                   {tab.dev && (
-                    <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-md ${
+                    <span className={`text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-md flex-shrink-0 ${
                       isActive ? "bg-purple-600 text-white" : "bg-white/10 text-purple-300"
                     }`}>
                       Em breve
@@ -91,37 +91,37 @@ export const DownloadSection = () => {
         </div>
 
         {/* Card Interativo da Plataforma Selecionada (Estilo Exato da Referência) */}
-        <div className="mt-8 rounded-3xl border border-white/10 bg-carbon-900/90 p-8 sm:p-14 shadow-2xl backdrop-blur-2xl">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-10">
+        <div className="mt-6 sm:mt-8 rounded-3xl border border-white/10 bg-carbon-900/90 p-5 sm:p-10 lg:p-14 shadow-2xl backdrop-blur-2xl">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-10">
             
             {/* Lado Esquerdo: Textos e Botões */}
-            <div className="max-w-xl space-y-6">
+            <div className="max-w-xl space-y-4 sm:space-y-6">
               {activeTab === "phone" && (
                 <>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 w-fit">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-300 w-fit">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    Disponível agora
+                    Disponível agora (v1.1.6)
                   </div>
-                  <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
                     Vortex Cine para Celular
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                     Navegue, busque e assista diretamente no seu celular ou tablet. Faça login com suas credenciais para sincronizar sua biblioteca, múltiplos perfis e o progresso dos seus vídeos.
                   </p>
-                  <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
                     <a
                       href={downloadUrl}
-                      className="rounded-full bg-white px-6 py-3 text-xs sm:text-sm font-bold text-black shadow-md transition hover:bg-white/90 hover:scale-105 flex items-center gap-2"
+                      className="w-full sm:w-auto justify-center rounded-full bg-white px-6 py-3.5 text-xs sm:text-sm font-bold text-black shadow-md transition hover:bg-white/90 active:scale-95 flex items-center gap-2 text-center"
                     >
                       <FontAwesomeIcon icon={faDownload} className="size-3.5" />
                       <span>Baixar Android APK</span>
                     </a>
                     <button
                       disabled
-                      className="rounded-full border border-white/10 bg-white/5 px-5 py-3 text-xs sm:text-sm font-medium text-white/40 cursor-not-allowed"
+                      className="w-full sm:w-auto justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3.5 text-xs sm:text-sm font-medium text-white/40 cursor-not-allowed text-center"
                     >
                       iOS / TestFlight (Em breve)
                     </button>
@@ -131,23 +131,23 @@ export const DownloadSection = () => {
 
               {activeTab === "tv" && (
                 <>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 w-fit">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300 w-fit">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
                     </span>
                     Em Desenvolvimento
                   </div>
-                  <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
                     Vortex Cine para Android TV e TV Box
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                     Estamos criando uma versão cinematográfica dedicada para controle remoto (D-Pad), com foco em alta performance, navegação ágil e reprodução contínua em 4K.
                   </p>
-                  <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                  <div className="pt-2">
                     <button
                       disabled
-                      className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2"
+                      className="w-full sm:w-auto justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2 text-center"
                     >
                       <span>Versão TV em desenvolvimento</span>
                     </button>
@@ -157,23 +157,23 @@ export const DownloadSection = () => {
 
               {activeTab === "desktop" && (
                 <>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 w-fit">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300 w-fit">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
                     </span>
                     Em Desenvolvimento
                   </div>
-                  <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
                     Vortex Cine para Computador
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                     A experiência desktop para Windows e macOS está sendo desenvolvida para oferecer renderização nativa de alta fidelidade e suporte avançado a monitores ultrawide.
                   </p>
-                  <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                  <div className="pt-2">
                     <button
                       disabled
-                      className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2"
+                      className="w-full sm:w-auto justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2 text-center"
                     >
                       <span>Versão Computador em desenvolvimento</span>
                     </button>
@@ -183,23 +183,23 @@ export const DownloadSection = () => {
 
               {activeTab === "smarttv" && (
                 <>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3.5 py-1 text-xs font-semibold text-purple-300 w-fit">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300 w-fit">
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
                     </span>
                     Em Desenvolvimento
                   </div>
-                  <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
                     Vortex Cine para Smart TVs
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
                     O suporte para plataformas de Smart TVs (como Samsung Tizen e LG webOS) está planejado para fases futuras de expansão do ecossistema Vortex Cine.
                   </p>
-                  <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                  <div className="pt-2">
                     <button
                       disabled
-                      className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2"
+                      className="w-full sm:w-auto justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2 text-center"
                     >
                       <span>Versão Smart TV em desenvolvimento</span>
                     </button>
@@ -209,13 +209,13 @@ export const DownloadSection = () => {
             </div>
 
             {/* Lado Direito: Logos das Plataformas em Destaque */}
-            <div className="flex items-center justify-center lg:justify-end gap-8 pt-4 lg:pt-0">
+            <div className="flex items-center justify-center lg:justify-end gap-6 sm:gap-8 pt-4 lg:pt-0 border-t lg:border-t-0 border-white/10">
               {/* Logo Android Oficial */}
               <div className="flex flex-col items-center gap-2 text-center group">
-                <div className="size-16 sm:size-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 transition duration-300 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10">
+                <div className="size-14 sm:size-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 transition duration-300 group-hover:border-emerald-500/50 group-hover:bg-emerald-500/10">
                   <svg
                     viewBox="0 0 24 24"
-                    className="size-10 sm:size-12 fill-[#3DDC84]"
+                    className="size-8 sm:size-12 fill-[#3DDC84]"
                   >
                     <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5802 8.411 13.8407 8.1 12 8.1s-3.5802.311-5.1368.8497L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396" />
                   </svg>
@@ -225,10 +225,10 @@ export const DownloadSection = () => {
 
               {/* Logo Apple Oficial */}
               <div className="flex flex-col items-center gap-2 text-center group">
-                <div className="size-16 sm:size-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 transition duration-300 group-hover:border-white/30 group-hover:bg-white/10">
+                <div className="size-14 sm:size-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-3 transition duration-300 group-hover:border-white/30 group-hover:bg-white/10">
                   <svg
                     viewBox="0 0 170 170"
-                    className="size-10 sm:size-12 fill-white"
+                    className="size-8 sm:size-12 fill-white"
                   >
                     <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.92-3.3-7.9-8.15-11.95-14.56-6.1-9.69-10.85-20.73-14.25-33.11-3.4-12.38-5.1-24.23-5.1-35.55 0-14.44 3.46-26.4 10.37-35.88 6.92-9.48 15.75-14.32 26.5-14.52 4.35 0 9.28 1.16 14.79 3.48 5.51 2.32 9.07 3.54 10.68 3.66 1.48 0 5.25-1.32 11.3-3.95 6.05-2.64 11.27-3.79 15.66-3.48 11.53.84 20.8 5.2 27.8 13.08-10.24 6.2-15.25 14.88-15.02 26.04.22 8.79 3.63 16.14 10.23 22.05 6.6 5.91 14.49 9.38 23.67 10.41-2.12 6.54-4.58 13.04-7.39 19.51zm-32.32-114.7c0 5.67-2.07 11.19-6.22 16.56-4.14 5.37-9.33 9.01-15.56 10.92-.33-1.63-.5-3.04-.5-4.22 0-5.78 2.33-11.53 7-17.25 4.67-5.72 10.42-9.28 17.25-10.68.22 1.41.33 2.65.33 3.71z" />
                   </svg>
@@ -241,7 +241,7 @@ export const DownloadSection = () => {
         </div>
 
         {/* Guia Passo a Passo de Instalação no Android */}
-        <div id="como-instalar" className="mt-20 pt-10 border-t border-white/10">
+        <div id="como-instalar" className="mt-14 sm:mt-20 pt-8 sm:pt-10 border-t border-white/10">
           <div className="text-left max-w-xl">
             <span className="text-xs uppercase tracking-widest text-purple-400 font-bold">
               Instalação Simples
@@ -254,22 +254,22 @@ export const DownloadSection = () => {
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {installSteps.map((step) => (
               <div
                 key={step.step}
-                className="relative rounded-2xl border border-white/10 bg-carbon-900/70 p-6 backdrop-blur-md transition hover:border-purple-500/40"
+                className="relative rounded-2xl border border-white/10 bg-carbon-900/70 p-5 sm:p-6 backdrop-blur-md transition hover:border-purple-500/40"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="inline-flex size-12 items-center justify-center rounded-xl bg-purple-600/20 border border-purple-500/30 text-purple-300 text-lg">
+                  <div className="inline-flex size-11 items-center justify-center rounded-xl bg-purple-600/20 border border-purple-500/30 text-purple-300 text-base">
                     <FontAwesomeIcon icon={step.icon} />
                   </div>
                   <span className="text-2xl font-black text-purple-400/40">
                     {step.step}
                   </span>
                 </div>
-                <h4 className="text-lg font-bold text-white mb-2">{step.title}</h4>
-                <p className="text-sm text-white/70 leading-relaxed">
+                <h4 className="text-base sm:text-lg font-bold text-white mb-2">{step.title}</h4>
+                <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
                   {step.description}
                 </p>
               </div>

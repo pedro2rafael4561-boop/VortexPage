@@ -192,32 +192,32 @@ export const Updates = () => {
                 {/* Header do Card */}
                 <button
                   onClick={() => toggleExpand(idx)}
-                  className="w-full flex flex-col sm:flex-row sm:items-center justify-between p-6 text-left gap-4"
+                  className="w-full flex items-start sm:items-center justify-between p-4 sm:p-6 text-left gap-3 sm:gap-4"
                 >
-                  <div className="flex items-center gap-4">
-                    <span className="text-xl font-black text-purple-400 font-mono">
-                      {rel.version}
-                    </span>
-                    {rel.isLatest && (
-                      <span className="rounded-full bg-purple-500/20 border border-purple-500/40 px-2.5 py-0.5 text-[10px] font-extrabold text-purple-300 uppercase tracking-wider">
-                        Mais Recente
+                  <div className="flex flex-col gap-1.5 flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-lg sm:text-xl font-black text-purple-400 font-mono">
+                        {rel.version}
                       </span>
-                    )}
-                    <div>
-                      <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition">
-                        {rel.title}
-                      </h3>
-                      <p className="text-xs text-white/50">{rel.date}</p>
+                      {rel.isLatest && (
+                        <span className="rounded-full bg-purple-500/20 border border-purple-500/40 px-2 py-0.5 text-[10px] font-extrabold text-purple-300 uppercase tracking-wider">
+                          Mais Recente
+                        </span>
+                      )}
+                      <span className="text-xs text-white/50">{rel.date}</span>
                     </div>
+                    <h3 className="text-sm sm:text-lg font-bold text-white group-hover:text-purple-300 transition leading-snug">
+                      {rel.title}
+                    </h3>
                   </div>
 
-                  <div className="flex items-center gap-3 self-end sm:self-center">
-                    <span className="text-xs font-semibold text-purple-300/80">
+                  <div className="flex items-center gap-2 sm:gap-3 self-start sm:self-center flex-shrink-0 pt-0.5 sm:pt-0">
+                    <span className="text-xs font-semibold text-purple-300/80 hidden sm:inline">
                       {isOpen ? "Ocultar detalhes" : "Ver o que mudou"}
                     </span>
-                    <div className="size-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/70">
+                    <div className="size-7 sm:size-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/70">
                       <svg
-                        className={`size-4 transform transition-transform duration-300 ${
+                        className={`size-3.5 sm:size-4 transform transition-transform duration-300 ${
                           isOpen ? "rotate-180" : ""
                         }`}
                         fill="none"
@@ -238,14 +238,14 @@ export const Updates = () => {
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="overflow-hidden border-t border-white/10 px-6 pb-6 pt-4"
+                      className="overflow-hidden border-t border-white/10 px-4 pb-5 pt-3 sm:px-6 sm:pb-6 sm:pt-4"
                     >
                       <div className="space-y-4">
                         <div>
                           <h4 className="text-xs uppercase tracking-widest text-purple-300 font-bold mb-2">
                             Principais Destaques
                           </h4>
-                          <ul className="space-y-1.5 text-sm text-white/80">
+                          <ul className="space-y-1.5 text-xs sm:text-sm text-white/80">
                             {rel.highlights.map((item, i) => (
                               <li key={i} className="flex items-start gap-2">
                                 <span className="text-purple-400 mt-0.5">✦</span>
@@ -259,7 +259,7 @@ export const Updates = () => {
                           <h4 className="text-xs uppercase tracking-widest text-white/50 font-bold mb-2">
                             Melhorias & Correções
                           </h4>
-                          <ul className="space-y-1.5 text-sm text-white/60">
+                          <ul className="space-y-1.5 text-xs sm:text-sm text-white/60">
                             {rel.details.map((item, i) => (
                               <li key={i} className="flex items-start gap-2">
                                 <span className="text-white/40 mt-0.5">•</span>
@@ -269,13 +269,13 @@ export const Updates = () => {
                           </ul>
                         </div>
 
-                        <div className="pt-2 flex items-center justify-between">
+                        <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                           <span className="text-xs text-white/40">
                             Compilação oficial assinada
                           </span>
                           <a
                             href="#download"
-                            className="inline-flex items-center gap-2 rounded-xl bg-purple-600/30 border border-purple-500/40 px-4 py-2 text-xs font-bold text-white hover:bg-purple-600 transition"
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600/30 border border-purple-500/40 px-4 py-2.5 text-xs font-bold text-white hover:bg-purple-600 transition w-full sm:w-auto"
                           >
                             <span>Baixar esta versão</span>
                             <svg className="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

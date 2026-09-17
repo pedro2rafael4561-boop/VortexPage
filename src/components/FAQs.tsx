@@ -53,28 +53,28 @@ const AccordionItem = ({
 
   return (
     <div
-      className={`cursor-pointer rounded-2xl border transition duration-300 p-6 backdrop-blur-xl ${
+      className={`cursor-pointer rounded-2xl border transition duration-300 p-4 sm:p-6 backdrop-blur-xl ${
         isOpen
           ? "border-purple-500/40 bg-carbon-900/90 shadow-[0_4px_20px_rgba(147,51,234,0.1)]"
           : "border-white/10 bg-carbon-900/50 hover:border-white/20"
       }`}
       onClick={() => setIsOpen(!isOpen)}
     >
-      <div className="flex items-center justify-between gap-4">
-        <span className="text-base sm:text-lg font-bold text-white tracking-tight">
+      <div className="flex items-center justify-between gap-3 sm:gap-4">
+        <span className="text-sm sm:text-base md:text-lg font-bold text-white tracking-tight leading-snug">
           {question}
         </span>
-        <div className="size-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-purple-300 flex-shrink-0">
-          {isOpen ? <MinusIcon className="size-3.5" /> : <PlusIcon className="size-3.5" />}
+        <div className="size-7 sm:size-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-purple-300 flex-shrink-0">
+          {isOpen ? <MinusIcon className="size-3 sm:size-3.5" /> : <PlusIcon className="size-3 sm:size-3.5" />}
         </div>
       </div>
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0, marginTop: 0 }}
-            animate={{ opacity: 1, height: "auto", marginTop: "14px" }}
+            animate={{ opacity: 1, height: "auto", marginTop: "12px" }}
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
-            className="text-sm sm:text-base leading-relaxed text-white/70 border-t border-white/10 pt-3"
+            className="text-xs sm:text-sm md:text-base leading-relaxed text-white/70 border-t border-white/10 pt-3"
           >
             {answer}
           </motion.div>

@@ -23,7 +23,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight"
+          className="max-w-4xl text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.15]"
         >
           Feito para todas as telas{" "}
           <br className="hidden sm:inline" />
@@ -35,7 +35,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-6 max-w-2xl text-base sm:text-lg text-white/70 leading-relaxed"
+          className="mt-4 sm:mt-6 max-w-2xl text-sm sm:text-base md:text-lg text-white/70 leading-relaxed px-1 sm:px-0"
         >
           O aplicativo definitivo de mídia para o seu celular, tablet e a TV que você já possui. Traga suas próprias listas e fontes. O Vortex Cine transforma tudo em uma biblioteca com pôsteres, sinopses, legendas e o seu ponto salvo em cada tela.
         </motion.p>
@@ -45,11 +45,11 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-8 flex flex-col sm:flex-row items-center gap-4"
+          className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto px-2 sm:px-0"
         >
           <a
             href={downloadUrl}
-            className="rounded-full bg-white px-7 py-3.5 text-sm font-bold text-black shadow-lg transition duration-200 hover:bg-white/90 hover:scale-105 flex items-center gap-2.5"
+            className="w-full sm:w-auto justify-center rounded-full bg-white px-7 py-3.5 text-sm font-bold text-black shadow-lg transition duration-200 hover:bg-white/90 active:scale-95 flex items-center gap-2.5"
           >
             <FontAwesomeIcon icon={faDownload} className="size-4" />
             <span>Baixar Vortex Cine</span>
@@ -57,7 +57,7 @@ export const Hero = () => {
 
           <a
             href="#atualizacoes"
-            className="rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-white/10 flex items-center gap-2.5"
+            className="w-full sm:w-auto justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition duration-200 hover:bg-white/10 active:scale-95 flex items-center gap-2.5"
           >
             <FontAwesomeIcon icon={faClockRotateLeft} className="size-3.5 text-purple-400" />
             <span>Ver Atualizações</span>
@@ -69,7 +69,7 @@ export const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-6 text-xs text-white/40 max-w-lg"
+          className="mt-5 sm:mt-6 text-xs text-white/40 max-w-lg px-2"
         >
           Download gratuito para Android. O Vortex Cine não hospeda, armazena ou fornece qualquer mídia própria.
         </motion.p>
@@ -79,7 +79,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-14 w-full max-w-5xl flex justify-center"
+          className="mt-10 sm:mt-14 w-full max-w-5xl flex justify-center px-1 sm:px-0"
         >
           <div className="relative group w-full flex justify-center">
             {/* Brilho suave cinematográfico atrás da imagem */}

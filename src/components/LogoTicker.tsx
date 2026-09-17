@@ -34,7 +34,7 @@ export const LogoTicker = () => {
         </span>
       </div>
 
-      <div className="relative flex overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-gradient-to-r before:from-carbon-950 before:to-transparent before:content-[''] after:absolute after:right-0 after:top-0 after:h-full after:w-20 after:bg-gradient-to-l after:from-carbon-950 after:to-transparent after:content-['']">
+      <div className="relative flex overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-6 sm:before:w-20 before:bg-gradient-to-r before:from-carbon-950 before:to-transparent before:content-[''] after:absolute after:right-0 after:top-0 after:h-full after:w-6 sm:after:w-20 after:bg-gradient-to-l after:from-carbon-950 after:to-transparent after:content-['']">
         <motion.div
           initial={{ translateX: 0 }}
           animate={{ translateX: "-50%" }}
@@ -43,14 +43,14 @@ export const LogoTicker = () => {
             ease: "linear",
             repeat: Infinity,
           }}
-          className="flex flex-none gap-6 pr-6 items-center"
+          className="flex flex-none gap-4 sm:gap-6 pr-4 sm:pr-6 items-center"
         >
           {tickerItems.concat(tickerItems).map((item, idx) => (
             <div
               key={`${item.label}-${idx}`}
-              className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/90 shadow-sm backdrop-blur-sm whitespace-nowrap hover:border-purple-500/40 hover:bg-purple-600/10 transition"
+              className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium text-white/90 shadow-sm backdrop-blur-sm whitespace-nowrap hover:border-purple-500/40 hover:bg-purple-600/10 transition"
             >
-              <FontAwesomeIcon icon={item.icon} className="text-purple-400 text-sm" />
+              <FontAwesomeIcon icon={item.icon} className="text-purple-400 text-xs sm:text-sm" />
               <span>{item.label}</span>
             </div>
           ))}

@@ -32,7 +32,7 @@ const Feature: React.FC<FeatureProps> = ({ title, description, icon, tag }) => {
   }, [offsetX, offsetY])
 
   return (
-    <div className="relative flex flex-col rounded-2xl border border-white/10 bg-carbon-900/60 p-7 text-left backdrop-blur-xl transition duration-300 hover:border-purple-500/40 hover:shadow-[0_10px_30px_rgba(147,51,234,0.15)] group">
+    <div className="relative flex flex-col rounded-2xl border border-white/10 bg-carbon-900/60 p-5 sm:p-7 text-left backdrop-blur-xl transition duration-300 hover:border-purple-500/40 hover:shadow-[0_10px_30px_rgba(147,51,234,0.15)] group">
       {/* Glow roxo interativo ao passar o mouse */}
       <motion.div
         ref={border}

@@ -9,7 +9,7 @@ export const AboutSection = () => {
       <div className="container relative z-10 max-w-4xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Card Sobre */}
-          <div className="rounded-3xl border border-white/10 bg-carbon-900/70 p-8 backdrop-blur-xl">
+          <div className="rounded-3xl border border-white/10 bg-carbon-900/70 p-5 sm:p-8 backdrop-blur-xl">
             <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300 uppercase tracking-wider">
               Sobre o Projeto
             </span>
@@ -33,7 +33,7 @@ export const AboutSection = () => {
           </div>
 
           {/* Card Termos & Privacidade */}
-          <div className="rounded-3xl border border-white/10 bg-carbon-900/70 p-8 backdrop-blur-xl">
+          <div className="rounded-3xl border border-white/10 bg-carbon-900/70 p-5 sm:p-8 backdrop-blur-xl">
             <span className="rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300 uppercase tracking-wider">
               Termos & Privacidade
             </span>
