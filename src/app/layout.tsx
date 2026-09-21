@@ -7,7 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext"
 const dmSans = DM_Sans({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vortexcine.com"),
+  metadataBase: new URL("https://vortex-page.vercel.app"),
   title: "Vortex Cine | Painel da Conta e Aplicativos Oficiais",
   description:
     "Acesse o painel oficial da sua conta Vortex Cine, conecte sua Smart TV via QR Code ou código, gerencie perfis e baixe os aplicativos oficiais.",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vortex Cine | Painel Oficial",
     description: "Gerencie sua conta Vortex Cine, conecte sua TV e acesse seus conteúdos favoritos.",
-    url: "https://vortexcine.com",
+    url: "https://vortex-page.vercel.app",
     siteName: "Vortex Cine",
     locale: "pt_BR",
     type: "website",
