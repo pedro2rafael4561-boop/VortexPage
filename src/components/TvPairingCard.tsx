@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/AuthContext"
 import { supabase } from "@/lib/supabase"
-import { Tv, CheckCircle2, AlertCircle, Loader2, ArrowRight, ShieldCheck, LogIn, User, Smartphone } from "lucide-react"
+import { Tv, CheckCircle2, AlertCircle, Loader2, ArrowRight, ShieldCheck, User, Server } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import logoImage from "@/assets/images/vortex-logo.png"
@@ -12,15 +12,15 @@ import logoImage from "@/assets/images/vortex-logo.png"
 export function TvPairingCardContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const { user, activeProfile, profiles, setActiveProfile, loading: authLoading, signIn } = useAuth()
+  const { user, xtreamUsername, activeProfile, profiles, loading: authLoading, loginWithXtream } = useAuth()
 
   const [code, setCode] = useState("")
   const [submitting, setSubmitting] = useState(false)
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  // Login form state
-  const [email, setEmail] = useState("")
+  // Login form state se não estiver autenticado
+  const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [loginLoading, setLoginLoading] = useState(false)
 
@@ -44,7 +44,6 @@ export function TvPairingCardContent() {
     setErrorMessage(null)
 
     try {
-      // Clean code: try exact string first, then uppercase for short codes
       const targetCode = rawInput.length <= 8 ? rawInput.toUpperCase() : rawInput.toLowerCase()
 
       const { data, error } = await supabase.rpc("approve_tv_login_session", {
@@ -52,7 +51,6 @@ export function TvPairingCardContent() {
       })
 
       if (error) {
-        // Retry with opposite casing in case the RPC expects uppercase/lowercase
         const altCode = rawInput.length <= 8 ? rawInput.toLowerCase() : rawInput.toUpperCase()
         const retry = await supabase.rpc("approve_tv_login_session", {
           p_code: altCode,
@@ -97,210 +95,205 @@ export function TvPairingCardContent() {
     setStatus("idle")
 
     try {
-      const { error: signInError } = await signIn(email.trim(), password)
-      if (signInError) {
+      const res = await loginWithXtream(username.trim(), password.trim())
+      if (!res.success) {
         setStatus("error")
-        setErrorMessage("E-mail ou senha incorretos. Verifique seus dados e tente novamente.")
+        setErrorMessage(res.error || "Usuário ou senha incorretos.")
         setLoginLoading(false)
         return
       }
 
-      await handleApprove(code)
+      // Após login com sucesso, aprova o código automaticamente se preenchido
+      if (code.trim()) {
+        await handleApprove(code)
+      }
     } catch {
       setStatus("error")
-      setErrorMessage("Falha ao autenticar. Tente novamente.")
+      setErrorMessage("Falha ao autenticar sua conta.")
     } finally {
       setLoginLoading(false)
     }
   }
 
-  if (authLoading) {
-    return (
-      <div className="flex flex-col items-center justify-center p-12 text-center">
-        <Loader2 className="w-8 h-8 text-brand animate-spin mb-4" />
-        <p className="text-neutral-400 text-sm">Verificando credenciais...</p>
-      </div>
-    )
-  }
-
   return (
-    <div className="w-full max-w-lg bg-carbon-900 border border-carbon-700/80 rounded-3xl p-6 sm:p-9 shadow-2xl relative overflow-hidden backdrop-blur-xl">
-      {/* Glow Superior Vermelho Cinema */}
-      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-36 bg-brand/15 blur-[90px] rounded-full pointer-events-none" />
-
-      {/* Cabeçalho */}
-      <div className="flex flex-col items-center text-center mb-8 relative z-10">
-        <div className="h-16 w-16 bg-brand/10 border border-brand/25 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-brand/10 text-brand">
-          <Tv className="w-8 h-8" />
-        </div>
-        <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-          Parear Smart TV
-        </h1>
-        <p className="text-xs sm:text-sm text-neutral-400 mt-2 max-w-sm">
-          Conecte sua Android TV ou TV Box à sua conta oficial <strong className="text-white">Vortex Cine</strong> instantaneamente.
-        </p>
-      </div>
-
-      {status === "success" ? (
-        <div className="text-center py-6 relative z-10">
-          <div className="w-16 h-16 bg-emerald-500/15 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400 shadow-lg shadow-emerald-500/10">
-            <CheckCircle2 className="w-10 h-10" />
+    <div className="w-full max-w-md mx-auto">
+      <div className="rounded-3xl bg-[#161616] border border-violet-500/35 p-6 sm:p-8 shadow-2xl shadow-violet-950/40">
+        {/* Header com Logo */}
+        <div className="flex flex-col items-center text-center mb-7">
+          <div className="h-16 w-16 rounded-2xl bg-black/40 border border-violet-500/30 p-2.5 shadow-xl shadow-violet-950/40 flex items-center justify-center mb-4">
+            <Image src={logoImage} alt="Vortex Cine" className="h-full w-full object-contain" priority />
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">TV Conectada com Sucesso!</h2>
-          <p className="text-sm text-neutral-300 mb-8 leading-relaxed max-w-sm mx-auto">
-            Sua TV já recebeu a autorização e está carregando seu perfil. Você já pode usar o controle remoto para assistir.
+          <h1 className="text-2xl font-bold tracking-tight text-[#F5F7F8]">Conectar à Smart TV</h1>
+          <p className="text-sm text-[#969CA3] mt-1">
+            Digite o código exibido no seu aplicativo Vortex Cine TV
           </p>
-          <div className="flex flex-col gap-3">
-            <Link
-              href="/app"
-              className="w-full bg-brand hover:bg-brand-hover text-white py-3.5 px-4 rounded-xl font-semibold text-sm transition-all text-center shadow-lg shadow-brand/20 active:scale-95"
-            >
-              Ir para o Painel da Conta
-            </Link>
-            <button
-              onClick={() => {
-                setStatus("idle")
-                setCode("")
-              }}
-              className="text-xs text-neutral-400 hover:text-white py-2 transition-colors"
-            >
-              Conectar outro televisor
-            </button>
+
+          <div className="mt-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs text-violet-300">
+            <Server className="w-3 h-3 text-violet-400" />
+            <span>Servidor Nativo: <strong className="text-white">kixar.xyz</strong></span>
           </div>
         </div>
-      ) : (
-        <div className="relative z-10">
-          {status === "error" && errorMessage && (
-            <div className="mb-6 p-4 rounded-xl bg-red-950/40 border border-red-800/60 flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
-              <div className="text-sm text-red-200">{errorMessage}</div>
+
+        {/* Estado de Sucesso */}
+        {status === "success" && (
+          <div className="rounded-2xl bg-emerald-500/10 border border-emerald-500/30 p-6 text-center animate-fade-in">
+            <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto mb-3 text-emerald-400">
+              <CheckCircle2 className="w-7 h-7" />
             </div>
-          )}
-
-          {/* Campo do Código */}
-          <div className="mb-6">
-            <label className="block text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2.5 text-center">
-              Código exibido na tela da TV
-            </label>
-            <input
-              type="text"
-              value={code}
-              onChange={(e) => setCode(e.target.value.trim())}
-              placeholder="Ex: ABC-123 ou d3583f..."
-              className="w-full bg-carbon-950 border-2 border-carbon-700 focus:border-brand rounded-2xl py-3.5 px-4 text-center text-lg sm:text-xl font-mono tracking-wider text-white font-bold transition-all outline-none shadow-inner"
-            />
-            <p className="text-[11px] text-neutral-500 mt-2 text-center">
-              Suporta códigos rápidos (6 caracteres) ou códigos completos (32 caracteres).
+            <h3 className="text-lg font-bold text-white mb-1">Smart TV Conectada!</h3>
+            <p className="text-sm text-neutral-300 mb-6">
+              Sua TV foi autenticada com sucesso no Vortex Cine. O carregamento começará na tela em instantes.
             </p>
+            <div className="flex flex-col gap-2.5">
+              <Link
+                href="/app"
+                className="w-full py-3 px-4 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition"
+              >
+                Acessar Painel da Conta
+              </Link>
+              <button
+                onClick={() => {
+                  setStatus("idle")
+                  setCode("")
+                }}
+                className="text-xs text-[#969CA3] hover:text-white transition py-1"
+              >
+                Parear outro dispositivo
+              </button>
+            </div>
           </div>
+        )}
 
-          {user ? (
-            /* Usuário já autenticado */
-            <div className="space-y-6">
-              {/* Card da Conta Atual */}
-              <div className="p-4 bg-carbon-950/80 border border-carbon-700 rounded-2xl flex items-center justify-between gap-3">
-                <div className="flex items-center gap-3 overflow-hidden">
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white shadow-md text-base shrink-0"
-                    style={{ backgroundColor: activeProfile?.avatar_color_hex || "#E50914" }}
-                  >
-                    {activeProfile?.name ? activeProfile.name[0].toUpperCase() : user.email?.[0].toUpperCase()}
-                  </div>
-                  <div className="overflow-hidden text-left">
-                    <div className="text-[11px] font-medium text-neutral-400">Autorizando como</div>
-                    <div className="text-sm font-bold text-white truncate">
-                      {activeProfile?.name || user.email}
+        {/* Formulário Normal de Pareamento */}
+        {status !== "success" && (
+          <div className="space-y-6">
+            {/* Mensagem de Erro */}
+            {errorMessage && (
+              <div className="p-3.5 rounded-xl bg-[#E53935]/12 border border-[#E53935]/30 flex items-start gap-2.5 text-sm text-[#FF6B6B]">
+                <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
+            {/* Campo de Código */}
+            <div>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-[#969CA3] mb-2">
+                Código Exibido na TV
+              </label>
+              <div className="relative">
+                <Tv className="w-5 h-5 text-[#6E7178] absolute left-4 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  value={code}
+                  onChange={(e) => {
+                    setCode(e.target.value)
+                    setErrorMessage(null)
+                  }}
+                  placeholder="Ex: ABC123"
+                  className="w-full h-14 bg-white/[0.04] border border-white/[0.08] focus:border-violet-500 rounded-2xl pl-12 pr-4 text-center font-mono text-lg font-bold tracking-widest text-white placeholder:text-[#6E7178] placeholder:font-sans placeholder:tracking-normal outline-none transition uppercase"
+                />
+              </div>
+            </div>
+
+            {/* Se o usuário já estiver logado */}
+            {user ? (
+              <div className="space-y-4">
+                <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-violet-500/20 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white shadow"
+                      style={{ backgroundColor: activeProfile?.avatar_color_hex || "#7C3AED" }}
+                    >
+                      {activeProfile?.name?.charAt(0).toUpperCase() || xtreamUsername?.charAt(0).toUpperCase() || <User className="w-4 h-4" />}
                     </div>
-                    <div className="text-xs text-neutral-400 truncate">{user.email}</div>
+                    <div>
+                      <div className="text-xs text-[#969CA3]">Conectar como</div>
+                      <div className="text-sm font-semibold text-white">{activeProfile?.name || xtreamUsername}</div>
+                    </div>
                   </div>
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-medium">
+                    Ativo
+                  </span>
                 </div>
 
-                <Link
-                  href="/app/perfis"
-                  className="text-xs text-brand hover:underline font-semibold shrink-0"
+                <button
+                  type="button"
+                  onClick={() => handleApprove()}
+                  disabled={submitting || !code.trim()}
+                  className="w-full h-14 rounded-2xl bg-[#F5F5F5] hover:bg-white text-[#111111] font-semibold text-base transition flex items-center justify-center gap-2 shadow-lg disabled:opacity-40 cursor-pointer"
                 >
-                  Trocar Perfil
-                </Link>
+                  {submitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Autorizando TV...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Autorizar Conexão da TV</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
               </div>
+            ) : (
+              /* Se não estiver logado: login com usuário e senha */
+              <form onSubmit={handleLoginAndApprove} className="space-y-4 pt-2 border-t border-white/[0.08]">
+                <div className="text-xs font-medium text-[#969CA3]">
+                  Entre com seu usuário e senha do aplicativo para autorizar a TV:
+                </div>
 
-              {/* Botão de Confirmação */}
-              <button
-                onClick={() => handleApprove()}
-                disabled={submitting || !code}
-                className="w-full bg-brand hover:bg-brand-hover text-white py-4 px-6 rounded-2xl font-bold text-base flex items-center justify-center gap-2.5 transition-all shadow-xl shadow-brand/25 disabled:opacity-40 active:scale-95 cursor-pointer"
-              >
-                {submitting ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Autorizando TV...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Confirmar Conexão na TV</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </>
-                )}
-              </button>
-            </div>
-          ) : (
-            /* Usuário precisa fazer login */
-            <form onSubmit={handleLoginAndApprove} className="space-y-4">
-              <div className="text-xs font-semibold text-neutral-300 mb-2 text-center">
-                Entre na sua conta para liberar o acesso na TV:
-              </div>
+                <div>
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Usuário"
+                    required
+                    className="w-full h-12 bg-white/[0.04] border border-white/[0.08] focus:border-violet-500 rounded-xl px-4 text-sm text-[#F5F7F8] placeholder-[#6E7178] outline-none transition"
+                  />
+                </div>
 
-              <div>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  placeholder="Seu e-mail da conta Vortex"
-                  className="w-full bg-carbon-950 border border-carbon-700 focus:border-brand rounded-xl px-4 py-3.5 text-sm text-white placeholder:text-neutral-500 transition-colors outline-none"
-                />
-              </div>
+                <div>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Senha"
+                    required
+                    className="w-full h-12 bg-white/[0.04] border border-white/[0.08] focus:border-violet-500 rounded-xl px-4 text-sm text-[#F5F7F8] placeholder-[#6E7178] outline-none transition"
+                  />
+                </div>
 
-              <div>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  placeholder="Sua senha"
-                  className="w-full bg-carbon-950 border border-carbon-700 focus:border-brand rounded-xl px-4 py-3.5 text-sm text-white placeholder:text-neutral-500 transition-colors outline-none"
-                />
-              </div>
+                <button
+                  type="submit"
+                  disabled={loginLoading || !username.trim() || !password.trim() || !code.trim()}
+                  className="w-full h-14 rounded-2xl bg-[#F5F5F5] hover:bg-white text-[#111111] font-semibold text-base transition flex items-center justify-center gap-2 shadow-lg disabled:opacity-40 cursor-pointer"
+                >
+                  {loginLoading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Conectando e Autorizando...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Entrar e Autorizar TV</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        )}
 
-              <button
-                type="submit"
-                disabled={loginLoading || submitting || !code}
-                className="w-full bg-brand hover:bg-brand-hover text-white py-3.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-brand/20 disabled:opacity-40 active:scale-95 cursor-pointer"
-              >
-                {loginLoading || submitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Autenticando e Conectando...</span>
-                  </>
-                ) : (
-                  <>
-                    <LogIn className="w-4 h-4" />
-                    <span>Entrar e Conectar TV</span>
-                  </>
-                )}
-              </button>
-
-              <div className="pt-4 border-t border-carbon-700/60 flex items-center justify-between text-xs text-neutral-400">
-                <Link href="/entrar" className="hover:text-white transition">
-                  Já possui conta? Entrar separadamente
-                </Link>
-                <Link href="/" className="hover:text-white transition">
-                  Voltar ao início
-                </Link>
-              </div>
-            </form>
-          )}
+        {/* Rodapé explicativo */}
+        <div className="mt-7 pt-5 border-t border-white/[0.06] flex items-start gap-2.5 text-xs text-[#6E7178]">
+          <ShieldCheck className="w-4 h-4 text-violet-400 shrink-0 mt-0.5" />
+          <span>
+            Abra o app Vortex Cine na sua Smart TV, selecione Entrar com QR/Código e digite o código de 6 caracteres exibido.
+          </span>
         </div>
-      )}
+      </div>
     </div>
   )
 }

@@ -3,13 +3,13 @@ import { Navbar } from "@/components/Navbar"
 import { TvPairingCardContent } from "@/components/TvPairingCard"
 
 export const metadata = {
-  title: "Conectar Android TV | Vortex Cine",
+  title: "Vincular Dispositivo TV | Vortex Cine",
   description: "Conecte sua Android TV ou TV Box à sua conta Vortex Cine usando o código exibido na tela.",
 }
 
-export default function TvLoginLegacyPage() {
+export default function TvLoginAltPage() {
   return (
-    <div className="min-h-screen bg-carbon-950 text-white flex flex-col">
+    <div className="min-h-screen bg-[#0C0614] text-white flex flex-col vortex-gradient-bg">
       <Navbar />
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12 sm:py-16">
         <Suspense fallback={<div className="text-neutral-400">Carregando pareamento da TV...</div>}>

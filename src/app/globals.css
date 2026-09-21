@@ -12,5 +12,43 @@
     overflow-x: hidden;
     width: 100%;
     min-height: 100vh;
+    background-color: #0C0614;
+    color: #F5F7F8;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
+}
+
+/* Atmospheric Vortex Cine background identical to AuthScreen.kt */
+.vortex-gradient-bg {
+  background-color: #0C0614;
+  background-image: 
+    radial-gradient(circle at 50% 16%, rgba(91, 19, 213, 0.42) 0%, rgba(44, 11, 102, 0.18) 50%, transparent 88%),
+    radial-gradient(circle at 82% 72%, rgba(63, 19, 130, 0.25) 0%, transparent 74%);
+}
+
+.vortex-large-gradient-bg {
+  background-color: #0C0614;
+  background-image: 
+    radial-gradient(circle at 16% 42%, rgba(91, 19, 213, 0.52) 0%, rgba(44, 11, 102, 0.28) 50%, transparent 88%),
+    radial-gradient(circle at 78% 68%, rgba(63, 19, 130, 0.36) 0%, transparent 74%);
+}
+
+/* Glassmorphism and glow utilities */
+.vortex-card {
+  background-color: #161616;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  border-radius: 16px;
+}
+
+.vortex-field {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  color: #F5F7F8;
+  transition: all 0.2s ease-in-out;
+}
+
+.vortex-field:focus-within {
+  border-color: #7C3AED;
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.6);
 }

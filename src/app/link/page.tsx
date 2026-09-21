@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function LinkTvPage() {
   return (
-    <div className="min-h-screen bg-carbon-950 text-white flex flex-col">
+    <div className="min-h-screen bg-[#0C0614] text-white flex flex-col vortex-gradient-bg">
       <Navbar />
       <main className="flex-1 flex flex-col items-center justify-center px-4 py-12 sm:py-16">
         <Suspense fallback={<div className="text-neutral-400">Carregando pareamento da TV...</div>}>
