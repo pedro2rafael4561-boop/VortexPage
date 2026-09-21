@@ -10,18 +10,28 @@ const config: Config = {
     extend: {
       colors: {
         carbon: {
-          950: "#050507",
-          900: "#09090b",
-          850: "#0f0f13",
-          800: "#15151b",
-          700: "#1f1f27",
+          950: "#050505",
+          900: "#0A0A0A",
+          850: "#141414",
+          800: "#1A1A1A",
+          700: "#2A2A2A",
+          600: "#3A3A3A",
         },
-        vortex: {
-          light: "#c084fc",
-          DEFAULT: "#8b5cf6",
-          dark: "#6d28d9",
-          glow: "#a855f7",
+        brand: {
+          DEFAULT: "#E50914",
+          hover: "#B80710",
+          light: "#FF3A2F",
+          muted: "rgba(229, 9, 20, 0.15)",
         },
+        surface: {
+          base: "#0A0A0A",
+          card: "#141414",
+          cardHover: "#1A1A1A",
+          border: "#2A2A2A",
+        },
+      },
+      borderRadius: {
+        card: "16px",
       },
       container: {
         padding: "1.25rem",

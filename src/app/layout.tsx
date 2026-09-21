@@ -2,43 +2,35 @@ import type { Metadata } from "next"
 import { DM_Sans } from "next/font/google"
 import clsx from "clsx"
 import "./globals.css"
+import { AuthProvider } from "@/contexts/AuthContext"
 
 const dmSans = DM_Sans({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vortex-page.vercel.app"),
-  title: "Vortex Cine | O Cinema Definitivo no Seu Dispositivo",
+  metadataBase: new URL("https://vortexcine.com"),
+  title: "Vortex Cine | Painel da Conta e Aplicativos Oficiais",
   description:
-    "Site oficial do Vortex Cine. Baixe o aplicativo para Android e aproveite filmes, séries, animes e canais ao vivo com interface cinematográfica e múltiplos perfis.",
+    "Acesse o painel oficial da sua conta Vortex Cine, conecte sua Smart TV via QR Code ou código, gerencie perfis e baixe os aplicativos oficiais.",
   keywords: [
     "Vortex Cine",
+    "painel de conta",
+    "vincular tv",
+    "tv login",
     "streaming",
-    "filmes",
-    "séries",
-    "animes",
-    "canais ao vivo",
+    "filmes e series",
     "download apk",
-    "android",
+    "android tv",
   ],
-  authors: [{ name: "@PRAFAEL0007" }, { name: "Vortex Company LTDA" }],
+  authors: [{ name: "Vortex Cine" }],
   icons: {
-    icon: "/vortex-logo.png",
-    apple: "/vortex-logo.png",
+    icon: "/icon.png",
+    apple: "/icon.png",
   },
   openGraph: {
-    title: "Vortex Cine | Site Oficial",
-    description:
-      "Filmes, séries, animes e TV ao vivo em uma experiência cinematográfica incomparável.",
-    url: "https://vortex-page.vercel.app",
+    title: "Vortex Cine | Painel Oficial",
+    description: "Gerencie sua conta Vortex Cine, conecte sua TV e acesse seus conteúdos favoritos.",
+    url: "https://vortexcine.com",
     siteName: "Vortex Cine",
-    images: [
-      {
-        url: "/vortex-logo.png",
-        width: 512,
-        height: 512,
-        alt: "Vortex Cine Logo",
-      },
-    ],
     locale: "pt_BR",
     type: "website",
   },
@@ -51,8 +43,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
-      <body className={clsx(dmSans.className, "bg-carbon-950 text-white antialiased selection:bg-vortex-light selection:text-black")}>
-        {children}
+      <body className={clsx(dmSans.className, "bg-carbon-950 text-white antialiased selection:bg-brand selection:text-white")}>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   )

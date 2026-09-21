@@ -1,112 +1,162 @@
 "use client"
-import Image from "next/image"
-import Link from "next/link"
-import { useState } from "react"
-import logoImage from "@/assets/images/vortex-logo.png"
-import MenuIcon from "@/assets/icons/menu.svg"
-import XIcon from "@/assets/icons/x.svg"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faDownload } from "@fortawesome/free-solid-svg-icons"
 
-export const Navbar = () => {
+import React, { useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { usePathname } from "next/navigation"
+import { useAuth } from "@/contexts/AuthContext"
+import logoImage from "@/assets/images/vortex-logo.png"
+import { Tv, Download, LayoutDashboard, LogIn, LogOut, Menu, X, User } from "lucide-react"
+
+export const Navbar: React.FC = () => {
+  const { user, activeProfile, signOut } = useAuth()
+  const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navLinks = [
-    { name: "Recursos", href: "#recursos" },
-    { name: "Download", href: "#download" },
-    { name: "Atualizações", href: "#atualizacoes" },
-    { name: "Dúvidas", href: "#duvidas" },
-    { name: "Sobre", href: "#sobre" },
+    { name: "Início", href: "/" },
+    { name: "Conectar TV", href: "/tv-login", icon: Tv },
+    { name: "Downloads", href: "/downloads", icon: Download },
   ]
 
+  const isCurrent = (href: string) => {
+    if (href === "/") return pathname === "/"
+    return pathname.startsWith(href)
+  }
+
   return (
-    <header className="sticky top-3 z-50 px-3 sm:px-4">
-      <div className="mx-auto max-w-4xl rounded-2xl md:rounded-full border border-white/15 bg-carbon-900/85 px-3.5 py-2 sm:px-5 sm:py-2.5 backdrop-blur-2xl shadow-[0_10px_35px_rgba(0,0,0,0.8)] transition-all duration-300">
-        <div className="flex items-center justify-between gap-3">
-          
-          {/* Logo & Marca */}
-          <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
-            <div className="size-8 sm:size-9 overflow-hidden rounded-full bg-carbon-950 border border-purple-500/40 p-1 flex items-center justify-center transition group-hover:border-purple-400">
-              <Image
-                src={logoImage}
-                className="size-full object-contain"
-                alt="Logo Oficial do Vortex Cine"
-                priority
-              />
-            </div>
-            <span className="text-sm sm:text-base font-extrabold text-white tracking-tight">
-              Vortex <span className="bg-gradient-to-r from-purple-400 to-indigo-300 bg-clip-text text-transparent">Cine</span>
-            </span>
-          </Link>
-
-          {/* Links Desktop */}
-          <nav className="hidden md:flex items-center gap-6">
-            <Link
-              href="/"
-              className="rounded-full bg-white px-3.5 py-1 text-xs font-bold text-black shadow-md transition hover:bg-white/90"
-            >
-              Início
-            </Link>
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-xs font-medium text-white/70 transition hover:text-white"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
-
-          {/* Ações da Direita */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Botão Baixar APK */}
-            <a
-              href="#download"
-              className="inline-flex items-center gap-1.5 rounded-full bg-purple-600 px-3.5 py-1.5 sm:px-4 sm:py-1.5 text-xs font-bold text-white shadow-[0_0_15px_rgba(168,85,247,0.4)] transition hover:bg-purple-500 hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]"
-            >
-              <FontAwesomeIcon icon={faDownload} className="size-3 hidden xs:inline" />
-              <span>Baixar APK</span>
-            </a>
-
-            {/* Botão Mobile Hamburger */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Menu"
-              className="inline-flex size-8 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white md:hidden hover:bg-white/10 transition"
-            >
-              {mobileMenuOpen ? <XIcon className="size-4" /> : <MenuIcon className="size-4" />}
-            </button>
+    <header className="sticky top-0 z-50 w-full border-b border-carbon-700/60 bg-carbon-950/80 backdrop-blur-xl">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5 transition hover:opacity-90">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-carbon-850 border border-carbon-700 p-1.5 shadow-sm">
+            <Image src={logoImage} alt="Vortex Cine" className="h-full w-full object-contain" priority />
           </div>
+          <span className="text-xl font-bold tracking-tight text-white">
+            Vortex <span className="text-brand">Cine</span>
+          </span>
+        </Link>
+
+        {/* Links Desktop */}
+        <nav className="hidden md:flex items-center gap-1.5">
+          {navLinks.map((link) => {
+            const Icon = link.icon
+            const active = isCurrent(link.href)
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`flex items-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition ${
+                  active
+                    ? "bg-carbon-800 text-white border border-carbon-700"
+                    : "text-carbon-secondary hover:bg-carbon-850 hover:text-white"
+                }`}
+              >
+                {Icon && <Icon className="h-4 w-4" />}
+                {link.name}
+              </Link>
+            )
+          })}
+        </nav>
+
+        {/* CTA / Conta Desktop */}
+        <div className="hidden md:flex items-center gap-3">
+          {user ? (
+            <div className="flex items-center gap-3">
+              <Link
+                href="/app"
+                className="flex items-center gap-2 rounded-xl bg-carbon-850 border border-carbon-700 px-3 py-1.5 text-sm font-medium text-white transition hover:border-carbon-600"
+              >
+                <div
+                  className="h-6 w-6 rounded-full flex items-center justify-center text-xs font-bold text-white shadow"
+                  style={{ backgroundColor: activeProfile?.avatar_color_hex || "#E50914" }}
+                >
+                  {activeProfile?.name?.charAt(0).toUpperCase() || <User className="h-3 w-3" />}
+                </div>
+                <span>{activeProfile?.name || "Minha Conta"}</span>
+              </Link>
+              <button
+                onClick={() => signOut()}
+                className="rounded-lg p-2 text-carbon-secondary hover:bg-carbon-850 hover:text-white transition"
+                title="Sair"
+              >
+                <LogOut className="h-4 w-4" />
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/entrar"
+              className="flex items-center gap-2 rounded-xl bg-brand px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-brand/20 transition hover:bg-brand-hover active:scale-95"
+            >
+              <LogIn className="h-4 w-4" />
+              <span>Entrar na Conta</span>
+            </Link>
+          )}
         </div>
 
-        {/* Menu Mobile Expansível */}
-        {mobileMenuOpen && (
-          <div className="mt-3 border-t border-white/10 pt-3 md:hidden flex flex-col gap-1 pb-1 animate-fadeIn">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold text-white/90 hover:bg-white/10 hover:text-purple-300 transition"
-              >
-                <span>{link.name}</span>
-                <span className="text-white/30">&rarr;</span>
-              </a>
-            ))}
-            <div className="pt-2">
-              <a
-                href="#download"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-2 rounded-xl bg-purple-600 py-2.5 text-xs font-bold text-white shadow-md hover:bg-purple-500 transition w-full"
-              >
-                <FontAwesomeIcon icon={faDownload} className="size-3" />
-                <span>Baixar Vortex Cine para Celular</span>
-              </a>
-            </div>
-          </div>
-        )}
+        {/* Botão Mobile */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="rounded-lg p-2 text-carbon-secondary hover:bg-carbon-850 hover:text-white md:hidden"
+          aria-label="Abrir menu"
+        >
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {/* Drawer Mobile */}
+      {mobileMenuOpen && (
+        <div className="border-b border-carbon-700 bg-carbon-900 px-4 pb-6 pt-2 md:hidden">
+          <nav className="flex flex-col gap-2">
+            {navLinks.map((link) => {
+              const Icon = link.icon
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm font-medium text-white hover:bg-carbon-800"
+                >
+                  {Icon && <Icon className="h-4 w-4 text-brand" />}
+                  {link.name}
+                </Link>
+              )
+            })}
+            <div className="my-2 border-t border-carbon-800" />
+            {user ? (
+              <>
+                <Link
+                  href="/app"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-sm font-medium text-white hover:bg-carbon-800"
+                >
+                  <LayoutDashboard className="h-4 w-4 text-brand" />
+                  <span>Painel da Conta ({activeProfile?.name || "Perfil"})</span>
+                </Link>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false)
+                    signOut()
+                  }}
+                  className="flex items-center gap-2.5 rounded-lg px-3.5 py-2.5 text-left text-sm font-medium text-red-400 hover:bg-carbon-800"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Sair da Conta</span>
+                </button>
+              </>
+            ) : (
+              <Link
+                href="/entrar"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-xl bg-brand py-3 text-sm font-semibold text-white shadow"
+              >
+                <LogIn className="h-4 w-4" />
+                <span>Entrar na Conta</span>
+              </Link>
+            )}
+          </nav>
+        </div>
+      )}
     </header>
   )
 }
