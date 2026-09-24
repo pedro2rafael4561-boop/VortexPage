@@ -42,7 +42,7 @@ export default function HomePage() {
             <Sparkles className="h-3.5 w-3.5 text-[#A78BFA]" />
             <span>Ecossistema Oficial Vortex Cine</span>
             <span className="h-1 w-1 rounded-full bg-violet-400" />
-            <span className="text-white font-bold">Mobile v1.2.15 • TV v1.0.4</span>
+            <span className="text-white font-bold">App Unificado • Mobile & TV</span>
           </div>
 
           {/* Título Principal (Idêntico ao do App AuthScreen.kt) */}
@@ -90,7 +90,7 @@ export default function HomePage() {
               className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-2xl bg-white/[0.04] border border-white/[0.08] px-5 py-4 text-sm font-medium text-[#969CA3] transition hover:text-white hover:border-violet-500/30 active:scale-95 cursor-pointer"
             >
               <Download className="h-4 w-4 text-[#A78BFA]" />
-              <span>Baixar APKs</span>
+              <span>Baixar APK Universal</span>
             </Link>
           </div>
         </div>
@@ -101,92 +101,65 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-3 text-[#F5F7F8]">
-              Escolha Sua Tela e Comece a Assistir
+              Um Único Aplicativo para Todas as Telas
             </h2>
             <p className="text-sm sm:text-base text-[#969CA3]">
-              Instale as versões oficiais mais recentes do Vortex Cine com login automático pelo servidor nativo fixo.
+              Instale a versão unificada do Vortex Cine: detecção automática de tela no Celular, Tablet ou Smart TV / TV Box.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Card Mobile */}
-            <div className="rounded-3xl bg-[#161616] border border-violet-500/30 p-7 flex flex-col justify-between transition hover:border-violet-500/60 shadow-xl shadow-violet-950/20">
+          <div className="max-w-3xl mx-auto">
+            {/* Card Unificado */}
+            <div className="rounded-3xl bg-[#161616] border border-cyan-500/40 p-8 sm:p-10 flex flex-col justify-between transition hover:border-cyan-400 shadow-2xl shadow-cyan-950/20 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-72 h-72 bg-cyan-500/10 blur-[90px] pointer-events-none rounded-full" />
               <div>
                 <div className="flex items-center justify-between mb-6">
-                  <div className="h-12 w-12 rounded-2xl bg-violet-600/20 border border-violet-500/40 flex items-center justify-center text-[#A78BFA]">
-                    <Smartphone className="h-6 w-6" />
+                  <div className="flex items-center gap-3">
+                    <div className="h-12 w-12 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                      <Smartphone className="h-6 w-6" />
+                    </div>
+                    <span className="text-slate-500 font-bold">+</span>
+                    <div className="h-12 w-12 rounded-2xl bg-violet-600/20 border border-violet-500/40 flex items-center justify-center text-[#A78BFA]">
+                      <Tv className="h-6 w-6" />
+                    </div>
                   </div>
-                  <span className="rounded-full bg-violet-600/20 border border-violet-500/40 px-3 py-1 text-xs font-semibold text-violet-300">
-                    Versão 1.2.15
+                  <span className="rounded-full bg-cyan-500/20 border border-cyan-500/40 px-3.5 py-1 text-xs font-semibold text-cyan-300 font-mono">
+                    APK Universal
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Vortex Cine Mobile</h3>
-                <p className="text-sm text-[#969CA3] leading-relaxed mb-6">
-                  Otimizado para smartphones e tablets Android. Séries completas, temporadas, episódios, canais ao vivo e player integrado com aceleração por hardware.
+                <h3 className="text-2xl font-bold text-white mb-2">Vortex Cine Universal (Mobile & TV)</h3>
+                <p className="text-sm sm:text-base text-[#969CA3] leading-relaxed mb-6">
+                  Compatível com celulares, tablets e Smart TVs / TV Box. Interface adaptativa: controle por toque fluido no mobile e navegação 100% pensada para controle remoto no televisor, com sincronização em alta velocidade e troca instantânea de perfis.
                 </p>
-                <div className="space-y-2 mb-6">
-                  <div className="flex items-center gap-2 text-xs text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
-                    <span>Login nativo fixo sem necessidade de digitar DNS</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-[#969CA3]">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Android 7.0+ (Celulares, Tablets e TV Boxes)</span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
-                    <span>Catálogo de Séries com episódios corrigidos</span>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-[#969CA3]">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Nova sincronização instantânea de catálogo</span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
-                    <span>Ao vivo com reprodução instantânea HLS/TS</span>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-[#969CA3]">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Troca de perfil rápida e sem travamento</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-[#969CA3]">
+                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <span>Carregamento confiável de episódios de séries</span>
                   </div>
                 </div>
               </div>
               <a
-                href="https://github.com/pedro2rafael4561-boop/VortexCine/releases/download/v1.2.15/VortexCine-v1.2.15.apk"
-                className="flex items-center justify-center gap-2 rounded-xl bg-violet-600 hover:bg-violet-500 py-3.5 px-4 text-sm font-bold text-white transition active:scale-95 shadow-lg shadow-violet-600/20"
+                href="https://github.com/pedro2rafael4561-boop/VortexCine/releases/latest/download/Vortex-Cine.apk"
+                className="flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 py-4 px-6 text-base font-bold text-black transition active:scale-95 shadow-lg shadow-cyan-500/25"
               >
-                <Download className="h-4 w-4" />
-                <span>Baixar APK Mobile (v1.2.15)</span>
-              </a>
-            </div>
-
-            {/* Card Smart TV */}
-            <div className="rounded-3xl bg-[#161616] border border-violet-500/30 p-7 flex flex-col justify-between transition hover:border-violet-500/60 shadow-xl shadow-violet-950/20">
-              <div>
-                <div className="flex items-center justify-between mb-6">
-                  <div className="h-12 w-12 rounded-2xl bg-violet-600/20 border border-violet-500/40 flex items-center justify-center text-[#A78BFA]">
-                    <Tv className="h-6 w-6" />
-                  </div>
-                  <span className="rounded-full bg-violet-600/20 border border-violet-500/40 px-3 py-1 text-xs font-semibold text-violet-300">
-                    Versão 1.0.4
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">Vortex Cine Smart TV</h3>
-                <p className="text-sm text-[#969CA3] leading-relaxed mb-6">
-                  Desenvolvido para Android TV, Google TV e TV Boxes. Interface Leanback 100% controlável via controle remoto e pareamento rápido via QR Code.
-                </p>
-                <div className="space-y-2 mb-6">
-                  <div className="flex items-center gap-2 text-xs text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
-                    <span>Pareamento rápido pelo site oficial /link</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
-                    <span>Compatível com arquiteturas arm64 e armeabi-v7a</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
-                    <span>Navegação Leanback para controle remoto</span>
-                  </div>
-                </div>
-              </div>
-              <a
-                href="https://github.com/pedro2rafael4561-boop/VortexCineTV/releases/download/v1.0.4/Vortex-Cine-TV.apk"
-                className="flex items-center justify-center gap-2 rounded-xl bg-violet-600 hover:bg-violet-500 py-3.5 px-4 text-sm font-bold text-white transition active:scale-95 shadow-lg shadow-violet-600/20"
-              >
-                <Download className="h-4 w-4" />
-                <span>Baixar APK TV (v1.0.4)</span>
+                <Download className="h-5 w-5" />
+                <span>Baixar APK Universal (Vortex-Cine.apk)</span>
               </a>
             </div>
           </div>
+        </div>
         </div>
       </section>
 

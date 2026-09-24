@@ -13,11 +13,11 @@ import {
 
 export const DownloadSection = () => {
   const [activeTab, setActiveTab] = useState<"phone" | "tv" | "desktop" | "smarttv">("phone")
-  const downloadUrl = "https://github.com/pedro2rafael4561-boop/VortexPage/releases/latest/download/Vortex-Cine.apk"
+  const downloadUrl = "https://github.com/pedro2rafael4561-boop/VortexCine/releases/latest/download/Vortex-Cine.apk"
 
   const tabs = [
     { id: "phone", label: "Celular", icon: faMobileScreenButton, dev: false },
-    { id: "tv", label: "TV & TV Box", icon: faTv, dev: true },
+    { id: "tv", label: "TV & TV Box", icon: faTv, dev: false },
     { id: "desktop", label: "Computador", icon: faLaptop, dev: true },
     { id: "smarttv", label: "Smart TV", icon: faDisplay, dev: true },
   ] as const
@@ -103,7 +103,7 @@ export const DownloadSection = () => {
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    Disponível agora (v1.1.6)
+                    Disponível agora (App Unificado)
                   </div>
                   <h3 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
                     Vortex Cine para Celular
@@ -131,26 +131,27 @@ export const DownloadSection = () => {
 
               {activeTab === "tv" && (
                 <>
-                  <div className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-300 w-fit">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-300 w-fit">
                     <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    Em Desenvolvimento
+                    Disponível agora (App Unificado)
                   </div>
                   <h3 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
                     Vortex Cine para Android TV e TV Box
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed">
-                    Estamos criando uma versão cinematográfica dedicada para controle remoto (D-Pad), com foco em alta performance, navegação ágil e reprodução contínua em 4K.
+                    O mesmo APK do Vortex Cine se adapta automaticamente para Android TV, Google TV e TV Box com interface de 10 pés, navegação fluida por controle remoto (D-Pad) e alta performance.
                   </p>
-                  <div className="pt-2">
-                    <button
-                      disabled
-                      className="w-full sm:w-auto justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-xs sm:text-sm font-semibold text-white/40 cursor-not-allowed flex items-center gap-2 text-center"
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                    <a
+                      href={downloadUrl}
+                      className="w-full sm:w-auto justify-center rounded-full bg-white px-6 py-3.5 text-xs sm:text-sm font-bold text-black shadow-md transition hover:bg-white/90 active:scale-95 flex items-center gap-2 text-center"
                     >
-                      <span>Versão TV em desenvolvimento</span>
-                    </button>
+                      <FontAwesomeIcon icon={faDownload} className="size-3.5" />
+                      <span>Baixar APK (TV & TV Box)</span>
+                    </a>
                   </div>
                 </>
               )}

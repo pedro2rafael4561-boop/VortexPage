@@ -6,7 +6,7 @@ import { faDownload, faClockRotateLeft } from "@fortawesome/free-solid-svg-icons
 import { motion } from "framer-motion"
 
 export const Hero = () => {
-  const downloadUrl = "https://github.com/pedro2rafael4561-boop/VortexPage/releases/latest/download/Vortex-Cine.apk"
+  const downloadUrl = "https://github.com/pedro2rafael4561-boop/VortexCine/releases/latest/download/Vortex-Cine.apk"
 
   return (
     <main className="relative overflow-hidden bg-carbon-950 text-white pt-12 sm:pt-20">
