@@ -110,12 +110,12 @@ export default function HomePage() {
 
           <div className="max-w-3xl mx-auto">
             {/* Card Unificado */}
-            <div className="rounded-3xl bg-[#161616] border border-cyan-500/40 p-8 sm:p-10 flex flex-col justify-between transition hover:border-cyan-400 shadow-2xl shadow-cyan-950/20 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-72 h-72 bg-cyan-500/10 blur-[90px] pointer-events-none rounded-full" />
+            <div className="rounded-3xl bg-[#161616] border border-violet-500/30 p-8 sm:p-10 flex flex-col justify-between transition hover:border-violet-500/60 shadow-2xl shadow-violet-950/30 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-72 h-72 bg-violet-600/10 blur-[90px] pointer-events-none rounded-full" />
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
+                    <div className="h-12 w-12 rounded-2xl bg-violet-600/20 border border-violet-500/40 flex items-center justify-center text-[#A78BFA]">
                       <Smartphone className="h-6 w-6" />
                     </div>
                     <span className="text-slate-500 font-bold">+</span>
@@ -123,7 +123,7 @@ export default function HomePage() {
                       <Tv className="h-6 w-6" />
                     </div>
                   </div>
-                  <span className="rounded-full bg-cyan-500/20 border border-cyan-500/40 px-3.5 py-1 text-xs font-semibold text-cyan-300 font-mono">
+                  <span className="rounded-full bg-violet-600/20 border border-violet-500/40 px-3.5 py-1 text-xs font-semibold text-violet-300 font-mono">
                     APK Universal
                   </span>
                 </div>
@@ -133,26 +133,26 @@ export default function HomePage() {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8">
                   <div className="flex items-center gap-2 text-xs sm:text-sm text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
                     <span>Android 7.0+ (Celulares, Tablets e TV Boxes)</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs sm:text-sm text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
                     <span>Nova sincronização instantânea de catálogo</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs sm:text-sm text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
                     <span>Troca de perfil rápida e sem travamento</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs sm:text-sm text-[#969CA3]">
-                    <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
                     <span>Carregamento confiável de episódios de séries</span>
                   </div>
                 </div>
               </div>
               <a
                 href="https://github.com/pedro2rafael4561-boop/VortexCine/releases/latest/download/Vortex-Cine.apk"
-                className="flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 py-4 px-6 text-base font-bold text-black transition active:scale-95 shadow-lg shadow-cyan-500/25"
+                className="flex items-center justify-center gap-2.5 rounded-2xl bg-violet-600 hover:bg-violet-500 py-4 px-6 text-base font-bold text-white transition active:scale-95 shadow-lg shadow-violet-600/25"
               >
                 <Download className="h-5 w-5" />
                 <span>Baixar APK Universal (Vortex-Cine.apk)</span>

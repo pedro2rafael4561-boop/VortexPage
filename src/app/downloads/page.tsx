@@ -29,11 +29,11 @@ export default function DownloadsPage() {
         {/* Download Cards Grid */}
         <div className="max-w-3xl mx-auto mb-20">
           {/* Unified App Card */}
-          <div className="bg-[#161616] border border-cyan-500/40 rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden transition hover:border-cyan-400 shadow-2xl shadow-cyan-950/20">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/10 blur-[90px] pointer-events-none rounded-full" />
+          <div className="bg-[#161616] border border-violet-500/30 rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden transition hover:border-violet-500/60 shadow-2xl shadow-violet-950/30">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-violet-600/10 blur-[90px] pointer-events-none rounded-full" />
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-14 h-14 bg-cyan-500/20 border border-cyan-500/40 rounded-2xl flex items-center justify-center text-cyan-400">
+                <div className="w-14 h-14 bg-violet-600/20 border border-violet-500/40 rounded-2xl flex items-center justify-center text-[#A78BFA]">
                   <Smartphone className="w-7 h-7" />
                 </div>
                 <div className="text-xl font-bold text-slate-500">+</div>
@@ -44,7 +44,7 @@ export default function DownloadsPage() {
 
               <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                 <h2 className="text-2xl sm:text-3xl font-bold text-white">Vortex Cine (App Unificado)</h2>
-                <span className="text-xs font-mono bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full border border-cyan-500/30">
+                <span className="text-xs font-mono bg-violet-600/20 text-violet-300 px-3 py-1 rounded-full border border-violet-500/30">
                   APK Universal
                 </span>
               </div>
@@ -54,11 +54,11 @@ export default function DownloadsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8 text-xs sm:text-sm text-[#969CA3]">
                 <div className="flex items-center gap-2">
-                  <Cpu className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <Cpu className="w-4 h-4 text-violet-400 shrink-0" />
                   <span>Android 7.0+ (Celular, Tablet, Android TV, TV Box)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <Shield className="w-4 h-4 text-violet-400 shrink-0" />
                   <span>Nova tela de sincronização ultra-rápida de catálogo</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -75,7 +75,7 @@ export default function DownloadsPage() {
             <div className="pt-6 border-t border-white/[0.08] flex flex-col sm:flex-row gap-4">
               <a
                 href="https://github.com/pedro2rafael4561-boop/VortexCine/releases/latest/download/Vortex-Cine.apk"
-                className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-bold py-4 px-6 rounded-2xl text-base flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-cyan-500/25 active:scale-95"
+                className="flex-1 bg-violet-600 hover:bg-violet-500 text-white font-bold py-4 px-6 rounded-2xl text-base flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-violet-600/25 active:scale-95"
               >
                 <Download className="w-5 h-5" />
                 <span>Baixar APK Universal (Vortex-Cine.apk)</span>
