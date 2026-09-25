@@ -46,31 +46,53 @@ export function TvPairingCardContent() {
     try {
       const targetCode = rawInput.length <= 8 ? rawInput.toUpperCase() : rawInput.toLowerCase()
 
+      // Obter credenciais salvas do usuário atual
+      const activeUser = xtreamUsername || (typeof window !== "undefined" ? localStorage.getItem("vortex_user") : "") || username
+      const activePass = (typeof window !== "undefined" ? localStorage.getItem("vortex_pass") : "") || password
+
+      // 1. Notifica a rota de pareamento de TV para que o app TV receba as credenciais instantaneamente
+      let apiApproved = false
+      if (activeUser && activePass) {
+        try {
+          const apiRes = await fetch("/api/auth/tv-session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              action: "approve",
+              code: rawInput,
+              username: activeUser,
+              password: activePass,
+            }),
+          })
+          const apiData = await apiRes.json()
+          if (apiData?.success) {
+            apiApproved = true
+          }
+        } catch (apiErr) {
+          console.warn("Falha ao notificar /api/auth/tv-session:", apiErr)
+        }
+      }
+
+      // 2. Notifica o Supabase RPC
       const { data, error } = await supabase.rpc("approve_tv_login_session", {
         p_code: targetCode,
       })
 
-      if (error) {
+      if (error && !apiApproved) {
         const altCode = rawInput.length <= 8 ? rawInput.toLowerCase() : rawInput.toUpperCase()
         const retry = await supabase.rpc("approve_tv_login_session", {
           p_code: altCode,
         })
 
-        if (retry.error) {
+        if (retry.error && !apiApproved) {
           setStatus("error")
           setErrorMessage(error.message || "Não foi possível conectar à TV. Verifique o código e tente novamente.")
-          return
-        }
-
-        const retryResult = Array.isArray(retry.data) ? retry.data[0] : retry.data
-        if (retryResult?.success) {
-          setStatus("success")
           return
         }
       }
 
       const result = Array.isArray(data) ? data[0] : data
-      if (result && result.success) {
+      if (apiApproved || result?.success) {
         setStatus("success")
       } else {
         setStatus("error")
