@@ -86,7 +86,7 @@ function LoginForm() {
 
         <div className="mt-4 flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/25 text-xs text-violet-300">
           <Server className="w-3 h-3 text-violet-400" />
-          <span>DNS Nativo: <strong className="font-semibold text-white">kixar.xyz</strong> (Fixo)</span>
+          <span>DNS Nativo: <strong className="font-semibold text-white">zero10.fun</strong> (Fixo)</span>
         </div>
       </div>
 

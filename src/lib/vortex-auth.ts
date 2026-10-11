@@ -3,10 +3,11 @@
  * Sincronizados rigorosamente com a implementação do app mobile e TV (AuthRepository.kt / NativeDnsResolver.kt).
  */
 
-export const FIXED_NATIVE_DNS = "https://kixar.xyz"
+export const FIXED_NATIVE_DNS = "http://zero10.fun"
 
 export const FALLBACK_DNS_LIST = [
-  "https://kixar.xyz",
+  "http://zero10.fun",
+  "http://pixzo.com.br",
   "http://elitecdn.sbs",
   "http://digitalbr.cloud",
   "http://cdnultra.sbs",

@@ -91,7 +91,6 @@ export function TvPairingCardContent() {
         }
       }
 
-      const result = Array.isArray(data) ? data[0] : data
       if (apiApproved || result?.success) {
         setStatus("success")
       } else {
@@ -99,7 +98,7 @@ export function TvPairingCardContent() {
         setErrorMessage(
           result?.message === "Invalid or expired TV login code"
             ? "Código inválido ou expirado. Gere um novo código na sua TV e tente novamente."
-            : result?.message || "Código inválido ou expirado."
+            : result?.message || "Não foi possível autorizar o código. Verifique se o código está correto e tente novamente."
         )
       }
     } catch {
@@ -152,7 +151,7 @@ export function TvPairingCardContent() {
 
           <div className="mt-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs text-violet-300">
             <Server className="w-3 h-3 text-violet-400" />
-            <span>Servidor Nativo: <strong className="text-white">kixar.xyz</strong></span>
+            <span>Servidor Nativo: <strong className="text-white">zero10.fun</strong></span>
           </div>
         </div>
 
@@ -200,7 +199,7 @@ export function TvPairingCardContent() {
             {/* Campo de Código */}
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-[#969CA3] mb-2">
-                Código Exibido na TV
+                Código Exibido na TV (6 dígitos)
               </label>
               <div className="relative">
                 <Tv className="w-5 h-5 text-[#6E7178] absolute left-4 top-1/2 -translate-y-1/2" />
@@ -211,8 +210,9 @@ export function TvPairingCardContent() {
                     setCode(e.target.value)
                     setErrorMessage(null)
                   }}
-                  placeholder="Ex: ABC123"
-                  className="w-full h-14 bg-white/[0.04] border border-white/[0.08] focus:border-violet-500 rounded-2xl pl-12 pr-4 text-center font-mono text-lg font-bold tracking-widest text-white placeholder:text-[#6E7178] placeholder:font-sans placeholder:tracking-normal outline-none transition uppercase"
+                  placeholder="Ex: 123456"
+                  maxLength={8}
+                  className="w-full h-14 bg-white/[0.04] border border-white/[0.08] focus:border-violet-500 rounded-2xl pl-12 pr-4 text-center font-mono text-xl font-bold tracking-widest text-white placeholder:text-[#6E7178] placeholder:font-sans placeholder:tracking-normal outline-none transition uppercase"
                 />
               </div>
             </div>

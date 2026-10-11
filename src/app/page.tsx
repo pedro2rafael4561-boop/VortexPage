@@ -60,7 +60,7 @@ export default function HomePage() {
           {/* Tag de Servidor Fixo */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/[0.03] border border-violet-500/20 text-xs text-[#969CA3] mb-10">
             <Server className="w-3.5 h-3.5 text-violet-400" />
-            <span>Servidor DNS Nativo: <strong className="text-white font-semibold">kixar.xyz</strong> (Fixo no app e no site)</span>
+            <span>Servidor DNS Nativo: <strong className="text-white font-semibold">zero10.fun</strong> (Fixo no app e no site)</span>
           </div>
 
           {/* Grupo de Botões de Ação Principal */}

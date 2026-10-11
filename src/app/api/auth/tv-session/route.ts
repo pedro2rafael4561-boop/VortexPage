@@ -1,34 +1,15 @@
 import { NextRequest, NextResponse } from "next/server"
 import { supabase } from "@/lib/supabase"
-import { authenticateXtreamAccount, getVortexSyncCredentials } from "@/lib/vortex-auth"
-
-// Armazenamento em memória para sessões de pareamento TV ativas
-// Mantém as credenciais disponíveis para a TV pelo período de validade (15 minutos)
-type TvSessionRecord = {
-  username: string
-  password: string
-  timestamp: number
-}
-
-const g = globalThis as unknown as { _vortexTvSessions?: Map<string, TvSessionRecord> }
-if (!g._vortexTvSessions) {
-  g._vortexTvSessions = new Map<string, TvSessionRecord>()
-}
-const tvSessions = g._vortexTvSessions
-
-function cleanExpiredSessions() {
-  const now = Date.now()
-  const TTL = 15 * 60 * 1000 // 15 minutos
-  for (const [key, value] of tvSessions.entries()) {
-    if (now - value.timestamp > TTL) {
-      tvSessions.delete(key)
-    }
-  }
-}
+import { getVortexSyncCredentials } from "@/lib/vortex-auth"
+import {
+  approveTvSession,
+  getTvSession,
+  savePendingTvSession,
+  normalizeTvCode,
+} from "@/lib/tv-gateway"
 
 export async function POST(req: NextRequest) {
   try {
-    cleanExpiredSessions()
     const body = await req.json()
     const action = body.action || "approve"
     const rawCode = (body.code || "").trim()
@@ -42,6 +23,17 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    const cleanCode = normalizeTvCode(rawCode)
+
+    if (action === "start") {
+      await savePendingTvSession(cleanCode)
+      return NextResponse.json({
+        success: true,
+        code: cleanCode,
+        message: "Sessão TV iniciada.",
+      })
+    }
+
     if (action === "approve") {
       if (!username || !password) {
         return NextResponse.json(
@@ -50,29 +42,27 @@ export async function POST(req: NextRequest) {
         )
       }
 
-      // 1. Salva a aprovação em memória para a TV consumir
-      const sessionData: TvSessionRecord = {
-        username,
-        password,
-        timestamp: Date.now(),
-      }
+      // Salva a aprovação persistentemente no Supabase Gateway
+      const ok = await approveTvSession(cleanCode, username, password)
 
-      const lowerCode = rawCode.toLowerCase()
-      const upperCode = rawCode.toUpperCase()
-      tvSessions.set(lowerCode, sessionData)
-      tvSessions.set(upperCode, sessionData)
-
-      // 2. Notifica o Supabase chamando approve_tv_login_session se possível
+      // Fallback secundário: notifica também RPC nativa do Supabase caso configurada
       try {
-        await supabase.rpc("approve_tv_login_session", { p_code: lowerCode })
+        await supabase.rpc("approve_tv_login_session", { p_code: cleanCode })
       } catch (err) {
         console.warn("RPC approve_tv_login_session fallback:", err)
       }
 
-      return NextResponse.json({
-        success: true,
-        message: "TV autorizada com sucesso! O aplicativo conectará automaticamente.",
-      })
+      if (ok) {
+        return NextResponse.json({
+          success: true,
+          message: "TV autorizada com sucesso! O aplicativo conectará automaticamente.",
+        })
+      } else {
+        return NextResponse.json({
+          success: true,
+          message: "TV autorizada.",
+        })
+      }
     }
 
     return NextResponse.json(
@@ -81,7 +71,7 @@ export async function POST(req: NextRequest) {
     )
   } catch (err: any) {
     return NextResponse.json(
-      { success: false, message: err.message || "Erro interno ao processar sessão TV." },
+      { success: false, message: err?.message || "Erro interno ao processar sessão TV." },
       { status: 500 }
     )
   }
@@ -89,7 +79,6 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    cleanExpiredSessions()
     const { searchParams } = new URL(req.url)
     const rawCode = (searchParams.get("code") || "").trim()
 
@@ -100,9 +89,12 @@ export async function GET(req: NextRequest) {
       )
     }
 
-    const session = tvSessions.get(rawCode.toLowerCase()) || tvSessions.get(rawCode.toUpperCase())
+    const cleanCode = normalizeTvCode(rawCode)
 
-    if (session) {
+    // Consulta persistentemente no Supabase Gateway
+    const session = await getTvSession(cleanCode)
+
+    if (session && session.status === "approved" && session.username && session.password) {
       const syncCreds = getVortexSyncCredentials(session.username)
       return NextResponse.json({
         status: "approved",
@@ -119,7 +111,7 @@ export async function GET(req: NextRequest) {
     })
   } catch (err: any) {
     return NextResponse.json(
-      { status: "error", message: err.message || "Erro ao consultar sessão TV." },
+      { status: "error", message: err?.message || "Erro ao consultar sessão TV." },
       { status: 500 }
     )
   }
