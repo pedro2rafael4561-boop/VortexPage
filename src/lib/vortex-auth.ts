@@ -8,6 +8,8 @@ export const FIXED_NATIVE_DNS = "http://zero10.fun"
 export const FALLBACK_DNS_LIST = [
   "http://zero10.fun",
   "http://pixzo.com.br",
+  "https://kixar.xyz",
+  "http://kixar.xyz",
   "http://elitecdn.sbs",
   "http://digitalbr.cloud",
   "http://cdnultra.sbs",
@@ -94,6 +96,8 @@ export async function authenticateXtreamAccount(
     }
   }
 
+  let authRejectedMsg: string | null = null
+
   // Tenta o DNS fixo principal e fallbacks caso necessário
   for (const host of [FIXED_NATIVE_DNS, ...FALLBACK_DNS_LIST.filter(h => h !== FIXED_NATIVE_DNS)]) {
     try {
@@ -120,11 +124,10 @@ export async function authenticateXtreamAccount(
             if (data?.user_info) {
               const uInfo: XtreamUserInfo = data.user_info
               if (uInfo.auth === 0 || uInfo.status?.toLowerCase() === "disabled" || uInfo.status?.toLowerCase() === "banned") {
-                return {
-                  success: false,
-                  serverUrl: host,
-                  message: "Usuário ou senha incorretos.",
+                if (!authRejectedMsg) {
+                  authRejectedMsg = "Usuário ou senha incorretos."
                 }
+                continue // Tenta o próximo host da lista multi-DNS
               }
               return {
                 success: true,
@@ -139,6 +142,14 @@ export async function authenticateXtreamAccount(
       }
     } catch {
       // Falha de rede no host específico, tenta o próximo
+    }
+  }
+
+  if (authRejectedMsg) {
+    return {
+      success: false,
+      serverUrl: FIXED_NATIVE_DNS,
+      message: authRejectedMsg,
     }
   }
 
