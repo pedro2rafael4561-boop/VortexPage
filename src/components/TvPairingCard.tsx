@@ -91,14 +91,14 @@ export function TvPairingCardContent() {
         }
       }
 
-      if (apiApproved || result?.success) {
+      if (apiApproved || !error) {
         setStatus("success")
       } else {
         setStatus("error")
         setErrorMessage(
-          result?.message === "Invalid or expired TV login code"
+          error?.message === "Invalid or expired TV login code"
             ? "Código inválido ou expirado. Gere um novo código na sua TV e tente novamente."
-            : result?.message || "Não foi possível autorizar o código. Verifique se o código está correto e tente novamente."
+            : error?.message || "Não foi possível autorizar o código. Verifique se o código está correto e tente novamente."
         )
       }
     } catch {
